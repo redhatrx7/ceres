@@ -19,6 +19,7 @@ Usable Frameworks
 Intallation
 *******************
 * You will need to install node.js
+* (Optional: install python)
 
 *******************
 EZ setup help
@@ -41,6 +42,7 @@ Project Setup
   * node_modules\.bin\gulp copy (this will copy your node module files being used to your assets)
   * node_modules\.bin\gulp react (this will compile your jsx)
   * node_modules\.bin\gulp sass (this will compile you sass)
+* There is also a python script to run these gulp commands as an eclipse external tool named gulp (you will just have to change the path to the python executable to your own).
 
 *******************
 Server Requirements
