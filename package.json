@@ -1,23 +1,22 @@
 {
-  "name": "packages",
+  "name": "ceres",
   "version": "1.0.0",
-  "description": "What is CodeIgniter ###################",
-  "main": "index.js",
+  "description": "Ceres",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Daniel Demetroulis",
   "license": "ISC",
   "dependencies": {
-    "gulp": "latest",
-    "gulp-concat": "latest",
-    "gulp-react": "^3.1.0",
-    "gulp-sass": "^3.1.0",
-    "gulp-uglify": "latest",
-    "gulp-util": "latest"
+    "gulp": "~3.9.1",
+    "gulp-concat": "~2.6.1",
+    "gulp-react": "~3.1.0",
+    "gulp-sass": "~3.1.0",
+    "gulp-uglify": "~2.1.2",
+    "gulp-util": "~3.0.8"
   },
   "devDependencies": {
-    "jquery": "~3.2.1",
+  	"jquery": "~3.2.1",
     "jquery-ui-dist": "~1.12.1",
     "react": "~15.5.4",
     "react-dom": "~15.5.4"
