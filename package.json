@@ -1,0 +1,25 @@
+{
+  "name": "packages",
+  "version": "1.0.0",
+  "description": "What is CodeIgniter ###################",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "latest",
+    "gulp-concat": "latest",
+    "gulp-react": "^3.1.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "latest",
+    "gulp-util": "latest"
+  },
+  "devDependencies": {
+    "jquery": "~3.2.1",
+    "jquery-ui-dist": "~1.12.1",
+    "react": "~15.5.4",
+    "react-dom": "~15.5.4"
+  }
+}
