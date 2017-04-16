@@ -3,7 +3,8 @@
 $config = array(
 	'test' => array(
 		'js' => array(
-			asset_url().'js/react/test.js'
+			asset_url().'js/react/test.js',
+			asset_url().'js/controllers/test.js'
 		),
 		'css' => array(
 			asset_url().'css/codeigniter.css',

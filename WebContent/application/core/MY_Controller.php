@@ -5,7 +5,7 @@ class MY_Controller extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->config(strtolower(get_class($this)), FALSE, TRUE);
+		$this->load->config('controllers/'.strtolower(get_class($this)), FALSE, TRUE);
 		$this->load->config('header', FALSE, TRUE);
 		$this->load->config('footer', FALSE, TRUE);
 	}
@@ -41,22 +41,31 @@ class MY_Controller extends CI_Controller
 
 	protected function show_view( $view, $parameters = array() )
 	{
-		$css = $this->config->item('header')['css'];
-		$header_js = ($this->config->item('header')['js']) ? $this->config->item('header')['js'] : array();
-		$footer_js = ($this->config->item('footer')['js']) ? $this->config->item('footer')['js'] : array();
-		$class_config = $this->config->item(strtolower(get_class($this)));
-
-		if (isset($class_config))
+		if (ENVIRONMENT == 'development')
 		{
-			if (isset($class_config['css']) AND ! empty($class_config['css']) )
+			$css = $this->config->item('header')['css'];
+			$header_js = ($this->config->item('header')['js']) ? $this->config->item('header')['js'] : array();
+			$footer_js = ($this->config->item('footer')['js']) ? $this->config->item('footer')['js'] : array();
+			$class_config = $this->config->item(strtolower(get_class($this)));
+	
+			if (isset($class_config))
 			{
-				$css = array_merge($css, $class_config['css']);
+				if (isset($class_config['css']) AND ! empty($class_config['css']) )
+				{
+					$css = array_merge($css, $class_config['css']);
+				}
+	
+				if (isset($class_config['js']) AND ! empty($class_config['js']) )
+				{
+					$footer_js = array_merge($footer_js, $class_config['js']);
+				}
 			}
-
-			if (isset($class_config['js']) AND ! empty($class_config['js']) )
-			{
-				$footer_js = array_merge($footer_js, $class_config['js']);
-			}
+		}
+		else
+		{
+			$css = array(asset_url().'css/production.min.css');
+			$header_js = array();
+			$footer_js = array(asset_url().'js/'.strtolower(get_class($this)).'.min.js');
 		}
 
 		$this->load->view('header', array('css' => $css, 'js' => $header_js));
