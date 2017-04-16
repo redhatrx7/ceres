@@ -7,12 +7,14 @@ gulp.task('copy', function(){
             'node_modules/react/dist/react-with-addons.min.js',
             'node_modules/react-dom/dist/react-dom.min.js',
             'node_modules/jquery/dist/jquery.min.js',
-            'node_modules/jquery-ui-dist/jquery-ui.min.js'
+            'node_modules/jquery-ui-dist/jquery-ui.min.js',
+            'node_modules/bootstrap/dist/js/bootstrap.min.js'
   ])
   .pipe(gulp.dest('WebContent/assets/js/third_party'));
 
   gulp.src([
             'node_modules/jquery-ui-dist/jquery-ui.min.css',
+            'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
   ])
   .pipe(gulp.dest('WebContent/assets/css/third_party'));
 });

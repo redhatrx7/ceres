@@ -16,7 +16,8 @@
     "gulp-util": "~3.0.8"
   },
   "devDependencies": {
-  	"jquery": "~3.2.1",
+    "bootstrap": "^3.3.7",
+    "jquery": "~3.2.1",
     "jquery-ui-dist": "~1.12.1",
     "react": "~15.5.4",
     "react-dom": "~15.5.4"
