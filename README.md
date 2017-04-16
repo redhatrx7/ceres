@@ -14,6 +14,7 @@ Usable Frameworks
 * Jquery
 * React
 * Sass
+* Bootstrap
 
 *******************
 Intallation
