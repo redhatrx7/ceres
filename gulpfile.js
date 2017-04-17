@@ -28,8 +28,13 @@ function getArg(key) {
 
 var env = getArg("--js");
 var cts = getArg("--controllers");
+var css = getArg("--css");
+var ctscss = getArg("--controllerscss");
+
 var header_js = [];
 var controller_js = {};
+var header_css = [];
+var controller_css = {};
 
 if (env)
 {
@@ -37,6 +42,35 @@ if (env)
 	header_js.forEach(function(file, index){
 		header_js[index] = file.trim();
 	});
+}
+
+if (css)
+{
+	var header_css = css.replace(/\[|\]/gi, '').split(',');
+	header_js.forEach(function(file, index){
+		header_css[index] = file.trim();
+	});
+}
+
+if (ctscss)
+{
+	var ctscss_1 = ctscss.replace(/{|}/gi, '').split('],');
+	ctscss_1.forEach(function(ctscss_2, index){
+		var ctscss_3 = ctscss_2.split(':');
+		controller_css[ctscss_3[0].trim()] = ctscss_3[1].replace(/\[|\]/gi, '').split(',');
+		
+	});
+	
+	for ( prop in controller_css)
+	{
+		controller_css[prop].forEach( function( file, index ){
+			controller_css[prop][index] = file.trim();
+			if ( !controller_css[prop][index] )
+			{
+				controller_css[prop].splice(index, 1);
+			}
+		} );
+	}
 }
 
 if (cts)
@@ -70,6 +104,7 @@ files.forEach(function(file, index){
 });
 
 var global_js = header_js;
+var global_css = header_css;
 
 gulp.task('copy', function(){
   gulp.src(node_modules_js)
@@ -105,10 +140,7 @@ gulp.task('compress', function () {
 
 gulp.task('minify', function () {
 	controllers.forEach(function(controller, index){
-    gulp.src(node_modules_css.concat([
-		"WebContent/assets/css/general/**/*.css",
-		"WebContent/assets/css/controller/"+controller+".css"
-    ]))
+    gulp.src(global_css.concat(controller_css[controller]))
     .pipe(minify({keepBreaks: true}))
     .pipe(concat(controller+'.min.css'))
     .pipe(gulp.dest('WebContent/assets/css'))
