@@ -24,14 +24,16 @@ var node_modules = [
     'node_modules/bootstrap/dist/js/bootstrap.min.js'
 ];
 
+var node_modules_css = [
+	'node_modules/jquery-ui-dist/jquery-ui.min.css',
+	'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
+];
+
 gulp.task('copy', function(){
   gulp.src(node_modules)
   .pipe(gulp.dest('WebContent/assets/js/third_party'));
 
-  gulp.src([
-            'node_modules/jquery-ui-dist/jquery-ui.min.css',
-            'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
-  ])
+  gulp.src(node_modules_css)
   .pipe(gulp.dest('WebContent/assets/css/third_party'));
 });
 
@@ -65,9 +67,13 @@ gulp.task('compress', function () {
 });
 
 gulp.task('minify', function () {
-    gulp.src('WebContent/assets/css/**/*.css')
-        .pipe(minify({keepBreaks: true}))
-        .pipe(concat('production.min.css'))
-        .pipe(gulp.dest('WebContent/assets/css'))
-    ;
+	controllers.forEach(function(controller, index){
+    gulp.src(node_modules_css.concat([
+		"WebContent/assets/css/general/**/*.css",
+		"WebContent/assets/css/controller/"+controller+".css"
+    ]))
+    .pipe(minify({keepBreaks: true}))
+    .pipe(concat(controller+'.min.css'))
+    .pipe(gulp.dest('WebContent/assets/css'))
+	});
 });

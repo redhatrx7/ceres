@@ -63,7 +63,7 @@ class MY_Controller extends CI_Controller
 		}
 		else
 		{
-			$css = array(asset_url().'css/production.min.css');
+			$css = array(asset_url().'css/'.strtolower(get_class($this)).'.min.css');
 			$header_js = array();
 			$footer_js = array(asset_url().'js/'.strtolower(get_class($this)).'.min.js');
 		}

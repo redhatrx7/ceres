@@ -7,8 +7,8 @@ $config = array(
 			asset_url().'js/controllers/test.js'
 		),
 		'css' => array(
-			asset_url().'css/codeigniter.css',
-			asset_url().'css/test.css'
+			asset_url().'css/general/codeigniter.css',
+			asset_url().'css/controller/test.css'
 		)
 	)
 );

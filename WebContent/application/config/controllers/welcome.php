@@ -3,7 +3,7 @@
 $config = array(
 	'welcome' => array(
 		'css' => array(
-			asset_url().'css/codeigniter.css'
+			asset_url().'css/general/codeigniter.css'
 		)
 	)
 );
