@@ -7,6 +7,59 @@ var concat = require('gulp-concat');
 var minify = require('gulp-minify-css');
 var fs = require('fs');
 
+var node_modules_js = [
+   'node_modules/react/dist/react-with-addons.min.js',
+   'node_modules/react-dom/dist/react-dom.min.js',
+   'node_modules/jquery/dist/jquery.min.js',
+   'node_modules/jquery-ui-dist/jquery-ui.min.js',
+   'node_modules/bootstrap/dist/js/bootstrap.min.js'
+];
+
+var node_modules_css = [
+   	'node_modules/jquery-ui-dist/jquery-ui.min.css',
+   	'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
+];
+
+function getArg(key) {
+  var index = process.argv.indexOf(key);
+  var next = process.argv[index + 1];
+  return (index < 0) ? null : (!next || next[0] === "-") ? true : next;
+}
+
+var env = getArg("--js");
+var cts = getArg("--controllers");
+var header_js = [];
+var controller_js = {};
+
+if (env)
+{
+	var header_js = env.replace(/\[|\]/gi, '').split(',');
+	header_js.forEach(function(file, index){
+		header_js[index] = file.trim();
+	});
+}
+
+if (cts)
+{
+	var cts_1 = cts.replace(/{|}/gi, '').split('],');
+	cts_1.forEach(function(cts_2, index){
+		var cts_3 = cts_2.split(':');
+		controller_js[cts_3[0].trim()] = cts_3[1].replace(/\[|\]/gi, '').split(',');
+		
+	});
+	
+	for ( prop in controller_js)
+	{
+		controller_js[prop].forEach( function( file, index ){
+			controller_js[prop][index] = file.trim();
+			if ( !controller_js[prop][index] )
+			{
+				controller_js[prop].splice(index, 1);
+			}
+		} );
+	}
+}
+
 var files = fs.readdirSync('WebContent/application/controllers');
 var controllers = [];
 files.forEach(function(file, index){
@@ -16,21 +69,10 @@ files.forEach(function(file, index){
 	}
 });
 
-var node_modules = [
-    'node_modules/react/dist/react-with-addons.min.js',
-    'node_modules/react-dom/dist/react-dom.min.js',
-    'node_modules/jquery/dist/jquery.min.js',
-    'node_modules/jquery-ui-dist/jquery-ui.min.js',
-    'node_modules/bootstrap/dist/js/bootstrap.min.js'
-];
-
-var node_modules_css = [
-	'node_modules/jquery-ui-dist/jquery-ui.min.css',
-	'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
-];
+var global_js = header_js;
 
 gulp.task('copy', function(){
-  gulp.src(node_modules)
+  gulp.src(node_modules_js)
   .pipe(gulp.dest('WebContent/assets/js/third_party'));
 
   gulp.src(node_modules_css)
@@ -51,12 +93,7 @@ gulp.task('sass', function(){
 
 gulp.task('compress', function () {
 	controllers.forEach(function(controller, index){
-	    gulp.src(node_modules.concat([
-	    	"WebContent/assets/js/general/**/*.js",
-	    	"WebContent/assets/js/react/general/**/*.js",
-	    	"WebContent/assets/js/controllers/"+controller+".js",
-	    	"WebContent/assets/js/react/controllers/"+controller+".js",
-	    ]))
+	    gulp.src(global_js.concat(controller_js[controller]))
 	    .pipe(babel({presets: ['es2015']}))
 	    .pipe(concat(controller + ".min.js"))
 	    .pipe(uglify().on('error', function(e){

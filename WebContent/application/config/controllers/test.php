@@ -3,7 +3,7 @@
 $config = array(
 	'test' => array(
 		'js' => array(
-			asset_url().'js/react/test.js',
+			asset_url().'js/react/controllers/test.js',
 			asset_url().'js/controllers/test.js'
 		),
 		'css' => array(
