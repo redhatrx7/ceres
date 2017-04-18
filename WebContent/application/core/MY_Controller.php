@@ -6,8 +6,18 @@ class MY_Controller extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->config('controllers/'.strtolower(get_class($this)), FALSE, TRUE);
-		$this->load->config('header', FALSE, TRUE);
-		$this->load->config('footer', FALSE, TRUE);
+		$class_config = $this->config->item(strtolower(get_class($this)));
+
+		if ( isset($class_config['header']) )
+		{
+			$this->load->config('headers/' . $class_config['header'], FALSE, TRUE);
+			
+		}
+
+		if ( isset($class_config['footer']))
+		{
+			$this->load->config('footers/'. $class_config['footer'], FALSE, TRUE);
+		}
 	}
 
 	function _remap( $method )
@@ -43,11 +53,22 @@ class MY_Controller extends CI_Controller
 	{
 		if (ENVIRONMENT == 'development')
 		{
-			$css = $this->config->item('header')['css'];
-			$header_js = ($this->config->item('header')['js']) ? $this->config->item('header')['js'] : array();
-			$footer_js = ($this->config->item('footer')['js']) ? $this->config->item('footer')['js'] : array();
 			$class_config = $this->config->item(strtolower(get_class($this)));
-	
+			$header_js = array();
+			$footer_js = array();
+			$css = array();
+
+			if (isset($class_config['header']))
+			{
+				$css = $this->config->item($class_config['header'])['css'];
+				$header_js = $this->config->item($class_config['header'])['js'];
+			}
+			
+			if (isset($class_config['footer']))
+			{
+				$footer_js = $this->config->item($class_config['footer'])['js'];
+			}
+
 			if (isset($class_config))
 			{
 				if (isset($class_config['css']) AND ! empty($class_config['css']) )
@@ -63,9 +84,17 @@ class MY_Controller extends CI_Controller
 		}
 		else
 		{
-			$css = array(asset_url().'css/'.strtolower(get_class($this)).'.min.css');
+
+			if ( file_exists('assets/css/'.strtolower(get_class($this)).'.min.css') )
+			{
+				$css = array(asset_url().'css/'.strtolower(get_class($this)).'.min.css');
+			}
 			$header_js = array();
-			$footer_js = array(asset_url().'js/'.strtolower(get_class($this)).'.min.js');
+			$footer_js = array();
+			if ( file_exists('assets/js/'.strtolower(get_class($this)).'.min.js') )
+			{
+				$footer_js = array(asset_url().'js/'.strtolower(get_class($this)).'.min.js');
+			}
 		}
 
 		$this->load->view('header', array('css' => $css, 'js' => $header_js));

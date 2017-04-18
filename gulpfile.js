@@ -26,31 +26,11 @@ function getArg(key) {
   return (index < 0) ? null : (!next || next[0] === "-") ? true : next;
 }
 
-var env = getArg("--js");
 var cts = getArg("--controllers");
-var css = getArg("--css");
 var ctscss = getArg("--controllerscss");
 
-var header_js = [];
 var controller_js = {};
-var header_css = [];
 var controller_css = {};
-
-if (env)
-{
-	var header_js = env.replace(/\[|\]/gi, '').split(',');
-	header_js.forEach(function(file, index){
-		header_js[index] = file.trim();
-	});
-}
-
-if (css)
-{
-	var header_css = css.replace(/\[|\]/gi, '').split(',');
-	header_js.forEach(function(file, index){
-		header_css[index] = file.trim();
-	});
-}
 
 if (ctscss)
 {
@@ -103,9 +83,6 @@ files.forEach(function(file, index){
 	}
 });
 
-var global_js = header_js;
-var global_css = header_css;
-
 gulp.task('copy', function(){
   gulp.src(node_modules_js)
   .pipe(gulp.dest('WebContent/assets/js/third_party'));
@@ -128,7 +105,7 @@ gulp.task('sass', function(){
 
 gulp.task('compress', function () {
 	controllers.forEach(function(controller, index){
-	    gulp.src(global_js.concat(controller_js[controller]))
+	    gulp.src(controller_js[controller])
 	    .pipe(babel({presets: ['es2015']}))
 	    .pipe(concat(controller + ".min.js"))
 	    .pipe(uglify().on('error', function(e){
@@ -140,7 +117,7 @@ gulp.task('compress', function () {
 
 gulp.task('minify', function () {
 	controllers.forEach(function(controller, index){
-    gulp.src(global_css.concat(controller_css[controller]))
+    gulp.src(controller_css[controller])
     .pipe(minify({keepBreaks: true}))
     .pipe(concat(controller+'.min.css'))
     .pipe(gulp.dest('WebContent/assets/css'))

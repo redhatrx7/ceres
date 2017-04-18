@@ -9,6 +9,8 @@ $config = array(
 		'css' => array(
 			asset_url().'css/general/codeigniter.css',
 			asset_url().'css/controller/test.css'
-		)
+		),
+		'header' => 'header',
+		'footer' => 'footer'
 	)
 );
