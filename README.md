@@ -5,7 +5,7 @@ generic codeigniter project for quick starts on web development
 CERES
 ###################
 
-This project is meant to speed the process of setting up a php multi-page or single page application using codeigniter 3.
+This project is meant to speed the process of setting up a php multi-page/single page applications using codeigniter 3.
 
 *******************
 Usable Frameworks
@@ -43,7 +43,8 @@ Project Setup
   * node_modules\.bin\gulp copy (this will copy your node module files being used to your assets)
   * node_modules\.bin\gulp react (this will compile your jsx)
   * node_modules\.bin\gulp sass (this will compile you sass)
-* There is also a python script to run these gulp commands as an eclipse external tool named gulp (you will need to make an external tool that runs this script or run this script by hand).
+* There is also a python script to run these gulp commands as an eclipse external tool (you will need to make an external tool that runs this script or run this script by hand).
+* TODO: make gulp watch for sass and jsx changes
 
 *******************
 Server Requirements
