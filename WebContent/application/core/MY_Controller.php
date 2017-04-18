@@ -1,31 +1,54 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * Extends the system/core CI_Controller class
+ * @author Daniel Demetroulis
+ * @reference WebContent/application/config/controllers
+ * @reference WebContent/application/config/footers
+ * @reference WebContent/application/config/headers
+ *
+ */
 class MY_Controller extends CI_Controller
 {
+	protected $class_config = array();
+	protected $class_name = 'MY_Controller';
+	protected $has_header = FALSE;
+	protected $has_footer = FALSE;
+
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->config('controllers/'.strtolower(get_class($this)), FALSE, TRUE);
-		$class_config = $this->config->item(strtolower(get_class($this)));
 
-		if ( isset($class_config['header']) )
+		$this->class_name = strtolower(get_class($this));
+		$this->load->config('controllers/' . $this->class_name, FALSE, TRUE);
+		$this->class_config = $this->config->item($this->class_name);
+		$this->has_header = isset($this->class_config['header']);
+		$this->has_footer = isset($this->class_config['footer']);
+
+		// Load class configs
+		if ($this->has_header)
 		{
-			$this->load->config('headers/' . $class_config['header'], FALSE, TRUE);
+			$this->load->config('headers/' . $this->class_config['header'], FALSE, TRUE);
 			
 		}
 
-		if ( isset($class_config['footer']))
+		if ($this->has_footer)
 		{
-			$this->load->config('footers/'. $class_config['footer'], FALSE, TRUE);
+			$this->load->config('footers/'. $this->class_config['footer'], FALSE, TRUE);
 		}
 	}
 
+	/**
+	 * remaps controller method call to appropriate method depending on the verb
+	 * @param string $method
+	 */
 	function _remap( $method )
 	{
 		$param_offset = 2;
 		$verb = strtolower($this->input->server('REQUEST_METHOD'));
 		$secondary_method = "{$verb}_{$method}";
 
+		// If a method matches the verb change the method
 		if (method_exists($this,$secondary_method))
 		{
 			$method = $secondary_method;
@@ -40,7 +63,8 @@ class MY_Controller extends CI_Controller
 		$params = array_slice($this->uri->rsegment_array(), $param_offset);
 		$r = new \ReflectionMethod($this, $method);
 
-		if ( count($params) < $r->getNumberOfRequiredParameters())
+		// If the method request doesnt match the required parameters die
+		if (count($params) < $r->getNumberOfRequiredParameters())
 		{
 			header('X-Error-Message: Invalid Request', true, 400);
 			die();
@@ -49,51 +73,57 @@ class MY_Controller extends CI_Controller
 		call_user_func_array(array($this, $method), $params);
 	}
 
+	/**
+	 * Shows a view based off predetermined header and footer per controller
+	 * This method also loads the appropriate js and css files to the header and footer
+	 * @param string  $view
+	 * @param array $parameters
+	 */
 	protected function show_view( $view, $parameters = array() )
 	{
+		$header_js = array();
+		$footer_js = array();
+		$css = array();
+
+		// @reference .htaccess
 		if (ENVIRONMENT == 'development')
 		{
-			$class_config = $this->config->item(strtolower(get_class($this)));
-			$header_js = array();
-			$footer_js = array();
-			$css = array();
-
-			if (isset($class_config['header']))
+			// This is a development environment: load each css and js individually
+			if ($this->has_header)
 			{
-				$css = $this->config->item($class_config['header'])['css'];
-				$header_js = $this->config->item($class_config['header'])['js'];
+				$css = $this->config->item($this->class_config['header'])['css'];
+				$header_js = $this->config->item($this->class_config['header'])['js'];
 			}
 			
-			if (isset($class_config['footer']))
+			if ($this->has_footer)
 			{
-				$footer_js = $this->config->item($class_config['footer'])['js'];
+				$footer_js = $this->config->item($this->class_config['footer'])['js'];
 			}
 
-			if (isset($class_config))
+			if (isset($this->class_config))
 			{
-				if (isset($class_config['css']) AND ! empty($class_config['css']) )
+				if (isset($this->class_config['css']) AND ! empty($this->class_config['css']))
 				{
-					$css = array_merge($css, $class_config['css']);
+					$css = array_merge($css, $this->class_config['css']);
 				}
 	
-				if (isset($class_config['js']) AND ! empty($class_config['js']) )
+				if (isset($this->class_config['js']) AND ! empty($this->class_config['js']) )
 				{
-					$footer_js = array_merge($footer_js, $class_config['js']);
+					$footer_js = array_merge($footer_js, $this->class_config['js']);
 				}
 			}
 		}
 		else
 		{
-
-			if ( file_exists('assets/css/'.strtolower(get_class($this)).'.min.css') )
+			// This is not a development environment: load minified css js
+			if (file_exists('assets/css/' . $this->class_name . '.min.css'))
 			{
-				$css = array(asset_url().'css/'.strtolower(get_class($this)).'.min.css');
+				$css = array(asset_url() . 'css/' . $this->class_name . '.min.css');
 			}
-			$header_js = array();
-			$footer_js = array();
-			if ( file_exists('assets/js/'.strtolower(get_class($this)).'.min.js') )
+
+			if (file_exists('assets/js/' . $this->class_name . '.min.js'))
 			{
-				$footer_js = array(asset_url().'js/'.strtolower(get_class($this)).'.min.js');
+				$footer_js = array(asset_url() . 'js/' . $this->class_name . '.min.js');
 			}
 		}
 
