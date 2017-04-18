@@ -47,6 +47,12 @@ Project Setup
 * TODO: make gulp watch for sass and jsx changes
 
 *******************
+ENVIROMENTS
+*******************
+* Edit the .htaccess file to toggle between development and non development environments
+* non development evironments have minified css js for each controller
+
+*******************
 Server Requirements
 *******************
 
