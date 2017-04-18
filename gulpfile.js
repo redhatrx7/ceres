@@ -7,6 +7,14 @@ var concat = require('gulp-concat');
 var minify = require('gulp-minify-css');
 var fs = require('fs');
 
+/**
+ * Script for running gulp commands for compiling ceres jsx, sass, css, js, etc.
+ * @reference compile.py
+ */
+
+var controllers = [];
+
+//Current node_module js files that are copied over to assets (Please Maintain)
 var node_modules_js = [
    'node_modules/react/dist/react-with-addons.min.js',
    'node_modules/react-dom/dist/react-dom.min.js',
@@ -15,74 +23,66 @@ var node_modules_js = [
    'node_modules/bootstrap/dist/js/bootstrap.min.js'
 ];
 
+// Current node module css files that are copied over to assets (Please Maintain)
 var node_modules_css = [
    	'node_modules/jquery-ui-dist/jquery-ui.min.css',
    	'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
 ];
 
+// Gets a command line argument based off of a key
 function getArg(key) {
-  var index = process.argv.indexOf(key);
-  var next = process.argv[index + 1];
-  return (index < 0) ? null : (!next || next[0] === "-") ? true : next;
+	var index = process.argv.indexOf(key);
+	var next = process.argv[index + 1];
+	return (index < 0) ? null : (!next || next[0] === "-") ? true : next;
 }
 
-var cts = getArg("--controllers");
-var ctscss = getArg("--controllerscss");
-
-var controller_js = {};
-var controller_css = {};
-
-if (ctscss)
-{
-	var ctscss_1 = ctscss.replace(/{|}/gi, '').split('],');
-	ctscss_1.forEach(function(ctscss_2, index){
-		var ctscss_3 = ctscss_2.split(':');
-		controller_css[ctscss_3[0].trim()] = ctscss_3[1].replace(/\[|\]/gi, '').split(',');
-		
-	});
-	
-	for ( prop in controller_css)
+// Parse command line arguments
+function filterControllerArguments( arguments ){
+	let resourceObj = {}
+	if (arguments)
 	{
-		controller_css[prop].forEach( function( file, index ){
-			controller_css[prop][index] = file.trim();
-			if ( !controller_css[prop][index] )
-			{
-				controller_css[prop].splice(index, 1);
-			}
-		} );
-	}
-}
+		var cleanResources = arguments.replace(/{|}/gi, '').split('],');
 
-if (cts)
-{
-	var cts_1 = cts.replace(/{|}/gi, '').split('],');
-	cts_1.forEach(function(cts_2, index){
-		var cts_3 = cts_2.split(':');
-		controller_js[cts_3[0].trim()] = cts_3[1].replace(/\[|\]/gi, '').split(',');
+		cleanResources.forEach(function(cleanResource, index){
+			var resourceList = cleanResource.split(':');
+			resourceObj[resourceList[0].trim()] = resourceList[1].replace(/\[|\]/gi, '').split(',');
+			
+		});
 		
-	});
-	
-	for ( prop in controller_js)
-	{
-		controller_js[prop].forEach( function( file, index ){
-			controller_js[prop][index] = file.trim();
-			if ( !controller_js[prop][index] )
-			{
-				controller_js[prop].splice(index, 1);
-			}
-		} );
+		// trim up resourceObj
+		for ( property in resourceObj)
+		{
+			resourceObj[property].forEach( function( filepath, index ){
+				// trim the file name
+				resourceObj[property][index] = filepath.trim();
+
+				// If this is just an empty string remove from array
+				if ( !resourceObj[property][index] )
+				{
+					resourceObj[property].splice(index, 1);
+				}
+			} );
+		}
 	}
+	return resourceObj;
 }
 
-var files = fs.readdirSync('WebContent/application/controllers');
-var controllers = [];
-files.forEach(function(file, index){
+// Interpret css and js arguments
+var jsArgs = getArg("--controllers");
+var cssArgs = getArg("--controllerscss");
+var controller_js = filterControllerArguments(jsArgs);
+var controller_css = filterControllerArguments(cssArgs);
+
+// Get all controller names
+var controllerFiles = fs.readdirSync('WebContent/application/controllers');
+controllerFiles.forEach(function(file, index){
 	if (file.split('.').pop() === 'php')
 	{
 		controllers.push(file.split('.')[0].toLowerCase());
 	}
 });
 
+// Copy js and css node modules to their asset third party directory
 gulp.task('copy', function(){
   gulp.src(node_modules_js)
   .pipe(gulp.dest('WebContent/assets/js/third_party'));
@@ -91,18 +91,21 @@ gulp.task('copy', function(){
   .pipe(gulp.dest('WebContent/assets/css/third_party'));
 });
 
+// Convert jsx to js copied ti react directory
 gulp.task('react', function(){
 	return gulp.src('jsx/**/*.jsx')
     .pipe(react())
     .pipe(gulp.dest('WebContent/assets/js/react'));
 });
 
+// Convert sass to css to its respective css directory
 gulp.task('sass', function(){
 	return gulp.src('sass/**/*.sass')
     .pipe(sass({"bundleExec": true}))
     .pipe(gulp.dest('WebContent/assets/css'));
 });
 
+// uglify and minify js files for each respective controller
 gulp.task('compress', function () {
 	controllers.forEach(function(controller, index){
 	    gulp.src(controller_js[controller])
@@ -115,11 +118,12 @@ gulp.task('compress', function () {
 	});
 });
 
+// minify css files for each respective controller
 gulp.task('minify', function () {
 	controllers.forEach(function(controller, index){
     gulp.src(controller_css[controller])
     .pipe(minify({keepBreaks: true}))
-    .pipe(concat(controller+'.min.css'))
+    .pipe(concat(controller + '.min.css'))
     .pipe(gulp.dest('WebContent/assets/css'))
 	});
 });
