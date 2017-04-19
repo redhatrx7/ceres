@@ -19,6 +19,8 @@ class MY_Controller extends CI_Controller
 	{
 		parent::__construct();
 
+		$this->load->helper('directory');
+		$this->load->helper('filesystem');
 		$this->class_name = strtolower(get_class($this));
 		$this->load->config('controllers/' . $this->class_name, FALSE, TRUE);
 		$this->class_config = $this->config->item($this->class_name);
@@ -112,6 +114,23 @@ class MY_Controller extends CI_Controller
 					$footer_js = array_merge($footer_js, $this->class_config['js']);
 				}
 			}
+
+			// if /* is passed get all files in a directory
+			$files = array();
+			foreach( $footer_js as $index => $js_file )
+			{
+				if (strpos($js_file, '/*') !== false)
+				{
+					$parts = explode('/', $js_file);
+					array_pop($parts);
+					$path = implode('/',$parts).'/';
+					$map = directory_map('.'.str_replace('/*','',$js_file));
+					$files = get_all_files($map, $path);
+					array_splice($footer_js, $index, 1);
+				}
+			}
+
+			$footer_js = array_merge($footer_js, $files);
 		}
 		else
 		{
@@ -126,6 +145,8 @@ class MY_Controller extends CI_Controller
 				$footer_js = array(asset_url() . 'js/' . $this->class_name . '.min.js');
 			}
 		}
+
+		
 
 		$this->load->view('header', array('css' => $css, 'js' => $header_js));
 		$this->load->view($view, $parameters);

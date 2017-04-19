@@ -4,7 +4,9 @@ var sass = require('gulp-sass');
 var uglify = require('gulp-uglify');
 var babel = require('gulp-babel');
 var concat = require('gulp-concat');
+var sourcemaps = require('gulp-sourcemaps');
 var minify = require('gulp-minify-css');
+var watch = require('gulp-watch');
 var fs = require('fs');
 
 /**
@@ -109,11 +111,15 @@ gulp.task('sass', function(){
 gulp.task('compress', function () {
 	controllers.forEach(function(controller, index){
 	    gulp.src(controller_js[controller])
+	    .pipe(sourcemaps.init())
+	    .pipe(sourcemaps.identityMap())
 	    .pipe(babel({presets: ['es2015']}))
 	    .pipe(concat(controller + ".min.js"))
 	    .pipe(uglify().on('error', function(e){
 	         console.log(e);
 	    }))
+	    .pipe(gulp.dest("WebContent/assets/js/"))
+	    .pipe(sourcemaps.write('.'))
 	    .pipe(gulp.dest("WebContent/assets/js/"))
 	});
 });
@@ -126,4 +132,13 @@ gulp.task('minify', function () {
     .pipe(concat(controller + '.min.css'))
     .pipe(gulp.dest('WebContent/assets/css'))
 	});
+});
+
+gulp.task('watch', function() {
+	watch('sass/**/*.sass', function() {
+        gulp.start('sass');
+    });
+	watch('jsx/**/*.jsx', function() {
+		gulp.start('react');
+    });
 });

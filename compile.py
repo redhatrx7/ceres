@@ -35,6 +35,11 @@ for controller in controllers:
     	# Get the js files in the config
         if ".js" in controllerLine:
              controllerJsFiles.append(path_to_assets + controllerLine.split("'")[1])
+        elif "/*" in controllerLine: 
+        	directory = path_to_assets + controllerLine.split("'")[1].replace("/*", '') + '/**/*.js'
+        	jsFiles = glob.glob(directory, recursive=True)
+        	for file in jsFiles:
+        		controllerJsFiles.append(file.replace('\\', '/'))
         # Get the css files in the config
         elif ".css" in controllerLine:
             controllerCssFiles.append(path_to_assets + controllerLine.split("'")[1])
@@ -70,3 +75,4 @@ subprocess.check_call(dir_path + '/node_modules/.bin/gulp react', shell=True)
 subprocess.check_call(dir_path + '/node_modules/.bin/gulp sass', shell=True)
 subprocess.check_call(dir_path + '/node_modules/.bin/gulp compress --controllers "'  + json.dumps(controller_js) + '"', shell=True)
 subprocess.check_call(dir_path + '/node_modules/.bin/gulp minify --controllerscss "' + json.dumps(controller_css) + '"', shell=True)
+subprocess.check_call(dir_path + '/node_modules/.bin/gulp watch --controllers "'  + json.dumps(controller_js) + '" --controllerscss "' + json.dumps(controller_css) + '"', shell=True)

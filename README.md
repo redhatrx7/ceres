@@ -44,7 +44,7 @@ Project Setup
   * node_modules\.bin\gulp react (this will compile your jsx)
   * node_modules\.bin\gulp sass (this will compile you sass)
 * There is also a python script to run these gulp commands as an eclipse external tool (you will need to make an external tool that runs this script or run this script by hand).
-* TODO: make gulp watch for sass and jsx changes
+* watch tasks for JSX and SASS are added to grunt file, you may need to refresh the project after if publishing through eclipse.
 
 *******************
 ENVIROMENTS
