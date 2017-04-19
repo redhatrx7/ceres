@@ -21,6 +21,8 @@ class Test extends MY_Controller
 	function __construct()
 	{
 		parent::__construct();
+		
+		$this->load->helper('form');
 	}
 
 	public function index()

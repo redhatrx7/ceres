@@ -23,10 +23,13 @@ class Welcome extends MY_Controller
 	{
 		parent::__construct();
 		$this->load->model('user');
+		$this->load->helper('form');
 	}
 
 	public function index()
 	{
+		print_r($this->input->get('username'));
+		print_r($this->input->post('username'));
 		$results = $this->user->get_users();
 		$this->show_view('welcome_message', array('results' => $results));
 	}
