@@ -117,6 +117,7 @@ class MY_Controller extends CI_Controller
 
 			// if /* is passed get all files in a directory
 			$files = array();
+			$index_skip = 0;
 			foreach( $footer_js as $index => $js_file )
 			{
 				if (strpos($js_file, '/*') !== false)
@@ -126,7 +127,8 @@ class MY_Controller extends CI_Controller
 					$path = implode('/',$parts).'/';
 					$map = directory_map('.'.str_replace('/*','',$js_file));
 					$files = get_all_files($map, $path);
-					array_splice($footer_js, $index, 1, $files);
+					array_splice($footer_js, $index+$index_skip, 1, $files);
+					$index_skip += sizeof($files)-1;
 				}
 			}
 		}

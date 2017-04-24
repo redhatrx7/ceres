@@ -5,7 +5,7 @@ $config = array(
 		'js' => array(
 			asset_url().'js/general/sp_core/*',
 			asset_url().'js/react/controllers/test.js',
-			asset_url().'js/controllers/test.js'
+			asset_url().'js/controllers/test/*'
 			
 		),
 		'css' => array(
