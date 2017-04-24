@@ -126,11 +126,9 @@ class MY_Controller extends CI_Controller
 					$path = implode('/',$parts).'/';
 					$map = directory_map('.'.str_replace('/*','',$js_file));
 					$files = get_all_files($map, $path);
-					array_splice($footer_js, $index, 1);
+					array_splice($footer_js, $index, 1, $files);
 				}
 			}
-
-			$footer_js = array_merge($footer_js, $files);
 		}
 		else
 		{

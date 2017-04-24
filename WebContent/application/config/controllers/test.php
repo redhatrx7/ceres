@@ -3,9 +3,10 @@
 $config = array(
 	'test' => array(
 		'js' => array(
+			asset_url().'js/general/sp_core/*',
 			asset_url().'js/react/controllers/test.js',
-			asset_url().'js/controllers/test.js',
-			asset_url().'js/general/singlePage/*'
+			asset_url().'js/controllers/test.js'
+			
 		),
 		'css' => array(
 			asset_url().'css/general/codeigniter.css',

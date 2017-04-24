@@ -7,6 +7,7 @@ var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
 var minify = require('gulp-minify-css');
 var watch = require('gulp-watch');
+var browserify = require('gulp-browserify');
 var fs = require('fs');
 
 /**
@@ -40,7 +41,7 @@ function getArg(key) {
 
 // Parse command line arguments
 function filterControllerArguments( arguments ){
-	let resourceObj = {}
+	var resourceObj = {};
 	if (arguments)
 	{
 		var cleanResources = arguments.replace(/{|}/gi, '').split('],');
