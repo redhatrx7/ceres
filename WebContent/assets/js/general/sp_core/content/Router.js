@@ -23,7 +23,7 @@ sp_core.Router = class
 
 	route(route, newURI = false)
 	{
-		if (! this._routes[route.controller])
+		if ( ! this._routes[route.controller])
 		{
 			this._currentController = this._defaultRoute;
 			this.pushURI(this._currentController);

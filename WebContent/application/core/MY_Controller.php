@@ -21,6 +21,7 @@ class MY_Controller extends CI_Controller
 
 		$this->load->helper('directory');
 		$this->load->helper('filesystem');
+
 		$this->class_name = strtolower(get_class($this));
 		$this->load->config('controllers/' . $this->class_name, FALSE, TRUE);
 		$this->class_config = $this->config->item($this->class_name);

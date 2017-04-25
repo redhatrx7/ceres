@@ -4,6 +4,7 @@ $config = array(
 	'test' => array(
 		'js' => array(
 			asset_url().'js/general/sp_core/*',
+			asset_url().'js/general/helper/*',
 			asset_url().'js/react/controllers/test.js',
 			asset_url().'js/controllers/test/*'
 			

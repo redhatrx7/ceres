@@ -48,30 +48,24 @@ class Test extends MY_Controller
 		$this->load->view('json', array('response' => $response));
 	}
 
-	public function post_user()
+	public function post_user($id)
 	{
-		$response = array(
-				'post_user' => 'true'
-		);
-		
+		$request = $this->input->post();
+		$response = array('success' => $request['theTest']);
 		$this->load->view('json', array('response' => $response));
 	}
 
-	public function put_user()
+	public function put_user($id)
 	{
-		$response = array(
-				'put_user' => 'true'
-		);
-		
+		$request = $this->input->put();
+		$response = array('putsuccess' => $request['theTest']);
 		$this->load->view('json', array('response' => $response));
 	}
 
 	public function delete_user()
 	{
-		$response = array(
-				'delete_user' => 'true'
-		);
-		
+		$request = $this->input->delete();
+		$response = array('deletesuccess' => $request['theTest']);
 		$this->load->view('json', array('response' => $response));
 	}
 }
