@@ -7,7 +7,6 @@ var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
 var minify = require('gulp-minify-css');
 var watch = require('gulp-watch');
-var browserify = require('gulp-browserify');
 var fs = require('fs');
 
 /**

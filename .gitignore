@@ -1,1 +1,7 @@
 /node_modules/
+/WebContent/assets/css/welcome.min.css
+/WebContent/assets/css/test.min.css
+/WebContent/assets/js/test.min.js
+/WebContent/assets/js/test.min.js.map
+/WebContent/assets/js/react/controllers/test.js
+/WebContent/assets/css/controller/test.css
