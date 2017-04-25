@@ -1,8 +1,16 @@
+var app = app || {};
+var spCoreApp = null;
+app.controller = {};
+app.event = {};
+app.model = {};
+app.view = {}
+
 $(document).ready(function()
 {
-	let spCoreApp = new sp_core.Application();
-	
-	spCoreApp.router.routes = [];
+	spCoreApp = new sp_core.Application();
+	spCoreApp.router.routes = {
+			'home': new app.controller.Home()
+	};
 
 	spCoreApp.start();
 });
