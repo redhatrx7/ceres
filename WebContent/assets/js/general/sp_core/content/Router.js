@@ -2,7 +2,8 @@ sp_core.Router = class
 {
 	constructor()
 	{
-		this.defaultRoute = null;
+		this._defaultRoute = null;
+		this._currentController = null;
 		this._routes = [];
 	}
 
@@ -11,18 +12,37 @@ sp_core.Router = class
 		return this._routes;
 	}
 
-	set routes( routes )
+	set routes(routes)
 	{
-		if ( routes && routes.length > 0 )
+		if (routes)
 		{
-			this._defaultRoute = routes[0];
+			this._defaultRoute = Object.keys(routes)[0];
 			this._routes = routes;
 		}
 	}
 
-	route()
+	route(route, newURI = false)
 	{
-		console.log(this._routes);
-		console.log('load default page');
+		if (! this._routes[route.controller])
+		{
+			this._currentController = this._defaultRoute;
+			this.pushURI(this._currentController);
+		}
+		else
+		{
+			this._currentController = route.controller;
+			if (newURI)
+			{
+				pushURI(this._currentController +
+						(route.parameters.length > 0 ? '/' + route.parameters.join('/') : ''));
+			}
+		}
+
+		this._routes[this._currentController].load(route.parameters);
+	}
+
+	pushURI(uri)
+	{
+		history.pushState({},null,`${window.location.pathname}/` + uri);
 	}
 }

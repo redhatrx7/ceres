@@ -4,4 +4,9 @@ app.controller.Home = class
 	{
 		app.event.Home.initialize();
 	}
+
+	load( parameters )
+	{
+
+	}
 }
