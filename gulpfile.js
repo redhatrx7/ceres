@@ -22,14 +22,24 @@ var node_modules_js = [
    'node_modules/react-dom/dist/react-dom.min.js',
    'node_modules/jquery/dist/jquery.min.js',
    'node_modules/jquery-ui-dist/jquery-ui.min.js',
+   'node_modules/tether/dist/js/tether.min.js',
    'node_modules/bootstrap/dist/js/bootstrap.min.js'
 ];
 
 // Current node module css files that are copied over to assets (Please Maintain)
 var node_modules_css = [
    	'node_modules/jquery-ui-dist/jquery-ui.min.css',
-   	'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
+   	'node_modules/font-awesome/css/font-awesome.min.css',
+   	'node_modules/glyphicons-halflings/css/glyphicons-halflings.css',
+   	'node_modules/tether/dist/css/tether.min.css',
+   	'node_modules/bootstrap/dist/css/bootstrap.min.css',
+   	'node_modules/bootstrap/dist/css/bootstrap-grid.min.css',
+   	'node_modules/bootstrap/dist/css/bootstrap-reboot.min.css'
 ];
+
+var node_modules_fonts = [
+    'node_modules/font-awesome/fonts/*'
+]
 
 // Gets a command line argument based off of a key
 function getArg(key) {
@@ -91,6 +101,9 @@ gulp.task('copy', function(){
 
   gulp.src(node_modules_css)
   .pipe(gulp.dest('WebContent/assets/css/third_party'));
+  
+  gulp.src(node_modules_fonts)
+	  .pipe(gulp.dest('WebContent/assets/css/fonts'));
 });
 
 // Convert jsx to js copied ti react directory
