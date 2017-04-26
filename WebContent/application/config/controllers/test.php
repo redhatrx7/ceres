@@ -2,10 +2,16 @@
 
 $config = array(
 	'test' => array(
+		'title' => 'test',
+		'meta' => array(
+			array('name' => 'description', 'content' => 'this is a test page'),
+			array('name' => 'author', 'content' => 'Daniel Demetroulis'),
+			array('charset' => 'UTF-8')
+		),
 		'js' => array(
 			asset_url().'js/general/sp_core/*',
 			asset_url().'js/general/helper/*',
-			asset_url().'js/react/controllers/test.js',
+			asset_url().'js/react/controllers/test/home.js',
 			asset_url().'js/controllers/test/*'
 			
 		),

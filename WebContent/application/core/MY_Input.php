@@ -1,6 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-
+/**
+ * Extends the core input class to cover rest operations
+ * @author Daniel Demetroulis
+ */
 class MY_Input extends CI_Input {
 
 	public function __construct()

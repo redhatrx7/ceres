@@ -27,7 +27,7 @@ class Test extends MY_Controller
 
 	public function index()
 	{
-		$this->show_view('welcome_message');
+		$this->show_view('test');
 	}
 
 	public function data()

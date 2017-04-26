@@ -12,29 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<? endforeach;?>
 	</ul>
 	<? endif; ?>
-	
-<?= form_open('/', array('id' => 'form', 'class' => 'test', 'method' => 'get' )); ?>
-<?= form_input(array(
-        'name'          => 'username',
-        'id'            => 'username',
-        'value'         => 'johndoe',
-        'maxlength'     => '100',
-        'size'          => '50',
-        'style'         => 'width:50%'
-))?>
-<?=form_submit('mysubmit', 'Submit Get!')?>
-<?= form_close() ?>
-<?= form_open('/', array('id' => 'form', 'class' => 'test', 'method' => 'post' )); ?>
-<?= form_input(array(
-        'name'          => 'username',
-        'id'            => 'username',
-        'value'         => 'johndoe',
-        'maxlength'     => '100',
-        'size'          => '50',
-        'style'         => 'width:50%'
-))?>
-<?=form_submit('mysubmit', 'Submit Get!')?>
-<?= form_close() ?>
+
 
 	<div id="body">
 		<p>The page you are looking at is being generated.</p>

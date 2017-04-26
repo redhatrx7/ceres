@@ -2,11 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
+	<? foreach($meta as $tag): ?>
+	<meta <? foreach($tag as $type => $component): ?><?=$type.'="'.$component.'" ' ?><? endforeach; ?> >
+	<? endforeach; ?>
+	<title><?=$title ?></title>
 
 	<? foreach($css as $style): ?>
-		<link rel="stylesheet" type="text/css" href="<?=$style ?>" media="screen" />
+	<link rel="stylesheet" type="text/css" href="<?=$style ?>" media="screen" />
 	<? endforeach; ?>
 	<? foreach($js as $script): ?>
 	<script src="<?=$script ?>"></script>

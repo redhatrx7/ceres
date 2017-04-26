@@ -31,8 +31,7 @@ class MY_Controller extends CI_Controller
 		// Load class configs
 		if ($this->has_header)
 		{
-			$this->load->config('headers/' . $this->class_config['header'], FALSE, TRUE);
-			
+			$this->load->config('headers/' . $this->class_config['header']);
 		}
 
 		if ($this->has_footer)
@@ -87,6 +86,8 @@ class MY_Controller extends CI_Controller
 		$header_js = array();
 		$footer_js = array();
 		$css = array();
+		$title = $this->class_name;
+		$meta = array();
 
 		// @reference .htaccess
 		if (ENVIRONMENT == 'development')
@@ -94,10 +95,18 @@ class MY_Controller extends CI_Controller
 			// This is a development environment: load each css and js individually
 			if ($this->has_header)
 			{
-				$css = $this->config->item($this->class_config['header'])['css'];
-				$header_js = $this->config->item($this->class_config['header'])['js'];
+				if ( !empty($this->config->item($this->class_config['header'])['css']))
+				{
+					$css = $this->config->item($this->class_config['header'])['css'];
+				}
+
+				if ( !empty($this->config->item($this->class_config['header'])['js']))
+				{
+					$header_js = $this->config->item($this->class_config['header'])['js'];
+				}
+				
 			}
-			
+
 			if ($this->has_footer)
 			{
 				$footer_js = $this->config->item($this->class_config['footer'])['js'];
@@ -147,10 +156,29 @@ class MY_Controller extends CI_Controller
 			}
 		}
 
-		
+		// Set the page title
+		if (isset($this->class_config['title']))
+		{
+			$title = $this->class_config['title'];
+		}
 
-		$this->load->view('header', array('css' => $css, 'js' => $header_js));
+		// Set the page meta tags
+		if (isset($this->class_config['meta']))
+		{
+			$meta = $this->class_config['meta'];
+		}
+
+		// Load the header
+		if ($this->has_header)
+		{
+			$this->load->view('header', array('css' => $css, 'js' => $header_js, 'title' => $title, 'meta' => $meta));
+		}
+		// Load the view
 		$this->load->view($view, $parameters);
-		$this->load->view('footer', array('js' => $footer_js));
+		// Load the footer
+		if ($this->has_footer)
+		{
+			$this->load->view('footer', array('js' => $footer_js));
+		}
 	}
 }
