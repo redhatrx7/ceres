@@ -168,17 +168,9 @@ class MY_Controller extends CI_Controller
 			$meta = $this->class_config['meta'];
 		}
 
-		// Load the header
-		if ($this->has_header)
-		{
-			$this->load->view('header', array('css' => $css, 'js' => $header_js, 'title' => $title, 'meta' => $meta));
-		}
-		// Load the view
+
+		$this->load->view('header', array('css' => $css, 'js' => $header_js, 'title' => $title, 'meta' => $meta));
 		$this->load->view($view, $parameters);
-		// Load the footer
-		if ($this->has_footer)
-		{
-			$this->load->view('footer', array('js' => $footer_js));
-		}
+		$this->load->view('footer', array('js' => $footer_js));
 	}
 }
