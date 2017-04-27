@@ -35,7 +35,7 @@ for controller in controllers:
     	# Get the js files in the config
         if ".js" in controllerLine:
              controllerJsFiles.append(path_to_assets + controllerLine.split("'")[1])
-        elif "/*" in controllerLine: 
+        elif "/*" in controllerLine:
         	directory = path_to_assets + controllerLine.split("'")[1].replace("/*", '') + '/**/*.js'
         	jsFiles = glob.glob(directory, recursive=True)
         	for file in jsFiles:
@@ -44,25 +44,25 @@ for controller in controllers:
         elif ".css" in controllerLine:
             controllerCssFiles.append(path_to_assets + controllerLine.split("'")[1])
         # Open the header file
-        elif "'header' =>" in controllerLine:
-            headerFile = open(headers_path + controllerLine.split('=>')[0].replace("'", '').strip() + '.php', "r")
+        #elif "'header' =>" in controllerLine:
+         #   headerFile = open(headers_path + controllerLine.split('=>')[0].replace("'", '').strip() + '.php', "r")
             # Get js and css files of this controllers header file
-            for line in headerFile:
-                if ".js" in line:
-                    js.append(path_to_assets + line.split("'")[1])
-                elif ".css" in line:
-                    css.append(path_to_assets + line.split("'")[1])
-            headerFile.close()
+         #   for line in headerFile:
+         #       if ".js" in line:
+          #          js.append(path_to_assets + line.split("'")[1])
+           #     elif ".css" in line:
+           #         css.append(path_to_assets + line.split("'")[1])
+           # headerFile.close()
         # Open the footer file
-        elif "'footer' =>" in controllerLine:
-            footerFile = open(footers_path + controllerLine.split('=>')[0].replace("'", '').strip() + '.php', "r")
+        #elif "'footer' =>" in controllerLine:
+           # footerFile = open(footers_path + controllerLine.split('=>')[0].replace("'", '').strip() + '.php', "r")
             # Get js and css files of this controllers footer file
-            for line in footerFile:
-                if ".js" in line:
-                    js.append(path_to_assets + line.split("'")[1])
-                elif ".css" in line:
-                    css.append(path_to_assets + line.split("'")[1])
-            footerFile.close()
+           # for line in footerFile:
+             #   if ".js" in line:
+               #     js.append(path_to_assets + line.split("'")[1])
+               # elif ".css" in line:
+                #    css.append(path_to_assets + line.split("'")[1])
+            #footerFile.close()
     controllerFile.close()
  
  	# Assign js css files to the controller objects

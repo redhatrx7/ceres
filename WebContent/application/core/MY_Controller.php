@@ -89,29 +89,29 @@ class MY_Controller extends CI_Controller
 		$title = $this->class_name;
 		$meta = array();
 
+		// This is a development environment: load each css and js individually
+		if ($this->has_header)
+		{
+			if ( !empty($this->config->item($this->class_config['header'])['css']))
+			{
+				$css = $this->config->item($this->class_config['header'])['css'];
+			}
+			
+			if ( !empty($this->config->item($this->class_config['header'])['js']))
+			{
+				$header_js = $this->config->item($this->class_config['header'])['js'];
+			}
+			
+		}
+
+		if ($this->has_footer)
+		{
+			$footer_js = $this->config->item($this->class_config['footer'])['js'];
+		}
+
 		// @reference .htaccess
 		if (ENVIRONMENT == 'development')
 		{
-			// This is a development environment: load each css and js individually
-			if ($this->has_header)
-			{
-				if ( !empty($this->config->item($this->class_config['header'])['css']))
-				{
-					$css = $this->config->item($this->class_config['header'])['css'];
-				}
-
-				if ( !empty($this->config->item($this->class_config['header'])['js']))
-				{
-					$header_js = $this->config->item($this->class_config['header'])['js'];
-				}
-				
-			}
-
-			if ($this->has_footer)
-			{
-				$footer_js = $this->config->item($this->class_config['footer'])['js'];
-			}
-
 			if (isset($this->class_config))
 			{
 				if (isset($this->class_config['css']) AND ! empty($this->class_config['css']))
@@ -147,7 +147,7 @@ class MY_Controller extends CI_Controller
 			// This is not a development environment: load minified css js
 			if (file_exists('assets/css/' . $this->class_name . '.min.css'))
 			{
-				$css = array(asset_url() . 'css/' . $this->class_name . '.min.css');
+				$css = array_merge($css, array(asset_url() . 'css/' . $this->class_name . '.min.css'));
 			}
 
 			if (file_exists('assets/js/' . $this->class_name . '.min.js'))
