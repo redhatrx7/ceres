@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
-<div id="content" class="fill">
+<div id="login" class="fill">
 	<div class="container stretch-height">
 		<div class="row justify-content-center align-items-center stretch-height">
 			<div class="login-form col-8">
@@ -45,7 +45,7 @@
 						</div>
 						<div class="form-group">
 							<?=form_submit('login', 'Login', array(
-									'class'			=> 'btn btn-success'
+									'class'			=> 'btn btn-primary'
 							))?>
 						</div>
 						<?= form_close() ?>

@@ -11,7 +11,8 @@ $config = array(
 		'js' => array(
 		),
 		'css' => array(
-			asset_url().'css/general/content.css'
+			asset_url().'css/general/content.css',
+			asset_url().'css/controller/login.css'
 		),
 		'header' => 'login_header',
 		'footer' => 'footer'

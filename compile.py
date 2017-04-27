@@ -22,6 +22,8 @@ path_to_assets = 'WebContent/assets/'
 controller_js = {}
 controller_css = {}
 
+parameters = sys.argv[1:]
+
 # Get controller's css and js parameters
 for controller in controllers:
     controllerJsFiles = []
@@ -78,9 +80,15 @@ for controller in controllers:
     controller_css[os.path.basename(controller).replace('.php', '')] = css + controllerCssFiles
 
 # Initiate gulp sequence
-subprocess.check_call(dir_path + '/node_modules/.bin/gulp copy', shell=True)
-subprocess.check_call(dir_path + '/node_modules/.bin/gulp react', shell=True)
-subprocess.check_call(dir_path + '/node_modules/.bin/gulp sass', shell=True)
-subprocess.check_call(dir_path + '/node_modules/.bin/gulp compress --controllers "'  + json.dumps(controller_js) + '"', shell=True)
-subprocess.check_call(dir_path + '/node_modules/.bin/gulp minify --controllerscss "' + json.dumps(controller_css) + '"', shell=True)
-subprocess.check_call(dir_path + '/node_modules/.bin/gulp watch --controllers "'  + json.dumps(controller_js) + '" --controllerscss "' + json.dumps(controller_css) + '"', shell=True)
+if not parameters or 'copy' in parameters:
+    subprocess.check_call(dir_path + '/node_modules/.bin/gulp copy', shell=True)
+if not parameters or 'react' in parameters:
+    subprocess.check_call(dir_path + '/node_modules/.bin/gulp react', shell=True)
+if not parameters or 'sass' in parameters:
+    subprocess.check_call(dir_path + '/node_modules/.bin/gulp sass', shell=True)
+if not parameters or 'compress' in parameters:
+    subprocess.check_call(dir_path + '/node_modules/.bin/gulp compress --controllers "'  + json.dumps(controller_js) + '"', shell=True)
+if not parameters or 'minify' in parameters:
+    subprocess.check_call(dir_path + '/node_modules/.bin/gulp minify --controllerscss "' + json.dumps(controller_css) + '"', shell=True)
+if not parameters or 'watch' in parameters:
+    subprocess.check_call(dir_path + '/node_modules/.bin/gulp watch --controllers "'  + json.dumps(controller_js) + '" --controllerscss "' + json.dumps(controller_css) + '"', shell=True)
