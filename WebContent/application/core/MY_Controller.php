@@ -89,9 +89,12 @@ class MY_Controller extends CI_Controller
 		$title = $this->class_name;
 		$meta = array();
 
-		if ( ! empty($this->config->item($this->class_config['header'])['external_js']))
+		if ($this->has_header)
 		{
-			$header_js = $this->config->item($this->class_config['header'])['external_js'];
+			if ( ! empty($this->config->item($this->class_config['header'])['external_js']))
+			{
+				$header_js = $this->config->item($this->class_config['header'])['external_js'];
+			}
 		}
 
 		// @reference .htaccess
