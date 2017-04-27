@@ -101,9 +101,10 @@ gulp.task('copy', function(){
 
   gulp.src(node_modules_css)
   .pipe(gulp.dest('WebContent/assets/css/third_party'));
-  
+
   gulp.src(node_modules_fonts)
-	  .pipe(gulp.dest('WebContent/assets/css/fonts'));
+  	.pipe(gulp.dest('WebContent/assets/css/fonts'))
+  	.pipe(gulp.dest('WebContent/assets/fonts'))
 });
 
 // Convert jsx to js copied ti react directory

@@ -89,29 +89,34 @@ class MY_Controller extends CI_Controller
 		$title = $this->class_name;
 		$meta = array();
 
-		// This is a development environment: load each css and js individually
-		if ($this->has_header)
+		if ( ! empty($this->config->item($this->class_config['header'])['external_js']))
 		{
-			if ( !empty($this->config->item($this->class_config['header'])['css']))
-			{
-				$css = $this->config->item($this->class_config['header'])['css'];
-			}
-			
-			if ( !empty($this->config->item($this->class_config['header'])['js']))
-			{
-				$header_js = $this->config->item($this->class_config['header'])['js'];
-			}
-			
-		}
-
-		if ($this->has_footer)
-		{
-			$footer_js = $this->config->item($this->class_config['footer'])['js'];
+			$header_js = $this->config->item($this->class_config['header'])['external_js'];
 		}
 
 		// @reference .htaccess
 		if (ENVIRONMENT == 'development')
 		{
+			// This is a development environment: load each css and js individually
+			if ($this->has_header)
+			{
+				if ( ! empty($this->config->item($this->class_config['header'])['css']))
+				{
+					$css = $this->config->item($this->class_config['header'])['css'];
+				}
+				
+				if ( ! empty($this->config->item($this->class_config['header'])['js']))
+				{
+					$header_js = array_merge($header_js, $this->config->item($this->class_config['header'])['js']);
+				}
+				
+			}
+			
+			if ($this->has_footer)
+			{
+				$footer_js = $this->config->item($this->class_config['footer'])['js'];
+			}
+
 			if (isset($this->class_config))
 			{
 				if (isset($this->class_config['css']) AND ! empty($this->class_config['css']))
@@ -167,7 +172,6 @@ class MY_Controller extends CI_Controller
 		{
 			$meta = $this->class_config['meta'];
 		}
-
 
 		$this->load->view('header', array('css' => $css, 'js' => $header_js, 'title' => $title, 'meta' => $meta));
 		$this->load->view($view, $parameters);

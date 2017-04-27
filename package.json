@@ -21,12 +21,12 @@
     "gulp-watch": "~4.3.11"
   },
   "devDependencies": {
-    "bootstrap": "~3.3.7",
-    "font-awesome": "^4.7.0",
+    "bootstrap": "^4.0.0-alpha.6",
+    "font-awesome": "~4.7.0",
     "jquery": "~3.2.1",
     "jquery-ui-dist": "~1.12.1",
     "react": "~15.5.4",
     "react-dom": "~15.5.4",
-    "tether": "^1.4.0"
+    "tether": "~1.4.0"
   }
 }
