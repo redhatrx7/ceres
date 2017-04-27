@@ -9,16 +9,19 @@
 						Sign In
 					</div>
 					<div style="padding-top:30px" class="card-block">
-						<?= form_open('/', array('id' => 'login', 'class' => 'test', 'method' => 'post' )); ?>
+						<?= form_open('/login', array('id' => 'login', 'class' => 'test', 'method' => 'post' )); ?>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-user"></i></span>
-							
 							<?= form_input(array(
 									'type'			=> 'text',
 							        'name'          => 'username',
 							        'id'            => 'username',
+									'value'			=> set_value('username'),
 									'class'			=> 'form-control',
 									'placeholder'	=> 'username or email',
+									'required'		=> 'required',
+									'title'			=> form_error('username'),
+									'data-toggle'	=> 'tooltip'
 							))?>
 						</div>
 						<div class="input-group">
@@ -29,6 +32,9 @@
 							        'id'            => 'password',
 									'class'			=> 'form-control',
 									'placeholder'	=> 'password',
+									'required'		=> 'required',
+									'title'			=> form_error('password'),
+									'data-toggle'	=> 'tooltip'
 							))?>
 						</div>
 						<div class="input-group">
