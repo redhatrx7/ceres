@@ -10,52 +10,69 @@ class Login extends MY_Controller
 		$this->load->library('form_validation');
 		$this->load->library('session');
 		$this->load->model('user');
+		$this->load->library('remember_me');
 		$this->form_validation->set_error_delimiters('', '');
 	}
 
 	public function index()
 	{
+		$data = array('username' => '', 'password' => '');
+		$session = $this->session->userdata();
+
 		if ( $this->input->post() )
 		{
 			extract($this->input->post());
 
 			// Uses password_hash($password, PASSWORD_DEFAULT)
 			$validation = $this->class_config['validation'];
-			if (strpos($username, '@') !== false)
+
+			$this->form_validation->set_rules((strpos($username, '@')) ?
+					$validation['login_email'] : $validation['login_username']);
+			if ($this->form_validation->run() !== FALSE)
 			{
-				$this->form_validation->set_rules($validation['login_email']);
-				if ($this->form_validation->run() !== FALSE)
+				if ($user = $this->validate_user($username, $password))
 				{
-					if ($user = $this->validate_user($username, $password))
+					if (isset($remember))
 					{
-						$this->session->set_userdata(array(
-							'username'	=> $user->username,
-							'email'		=> $user->email,
-							'loggedIn'	=> TRUE
-						));
-						redirect('/test');
+						$this->remember_me->set_cookie($user, $password);
 					}
+					else
+					{
+						$remember = $this->remember_me->validate_cookie();
+						
+						if ($remember)
+						{
+							$this->remember_me->remove_cookie();
+						}
+					}
+
+					$this->session->set_userdata(array(
+						'username'	=> $user->username,
+						'email'		=> $user->email,
+						'loggedIn'	=> TRUE
+					));
+
+					redirect('/test');
 				}
 			}
-			else
+		}
+		elseif( ! isset($session['username']))
+		{
+			$remember = $this->remember_me->validate_cookie();
+
+			if ($remember)
 			{
-				$this->form_validation->set_rules($validation['login_username']);
-				if ($this->form_validation->run() !== FALSE)
+				$user = $this->user->get_user_by_id($remember->user_id);
+				$data['username'] = $user->username;
+				$data['password'] = $remember->password;
+				if ( ! empty($user))
 				{
-					if ($this->validate_user($username, $password))
-					{
-						$this->session->set_userdata(array(
-								'username'	=> $user->username,
-								'email'		=> $user->email,
-								'loggedIn'	=> TRUE
-						));
-						redirect('/test');
-					}
+					$this->show_view('login', array('data' => $data));
 				}
 			}
 		}
 
-		$this->show_view('login');
+		$this->show_view('login', array('data' => $data));
 	}
 
 	private function validate_user( $username, $password )

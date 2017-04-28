@@ -20,4 +20,10 @@ class user extends CI_Model {
 		$query = $this->db->select('*')->from('user')->where(array('username' => $username))->or_where(array('email' => $username))->get();
 		return $query->row();
 	}
+	
+	public function get_user_by_id($id)
+	{
+		$query = $this->db->select('*')->from('user')->where(array('id' => $id))->get();
+		return $query->row();
+	}
 }
