@@ -32,18 +32,16 @@ class Login extends MY_Controller
 			{
 				if ($user = $this->validate_user($username, $password))
 				{
+					$old_remember = $this->remember_me->validate_cookie();
+
+					if ($old_remember)
+					{
+						$this->remember_me->remove_cookie();
+					}
+
 					if (isset($remember))
 					{
 						$this->remember_me->set_cookie($user, $password);
-					}
-					else
-					{
-						$remember = $this->remember_me->validate_cookie();
-						
-						if ($remember)
-						{
-							$this->remember_me->remove_cookie();
-						}
 					}
 
 					$this->session->set_userdata(array(
