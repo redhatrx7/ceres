@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?=$language ?>">
 <head>
 	<? foreach($meta as $tag): ?>
 	<meta <? foreach($tag as $type => $component): ?><?=$type.'="'.$component.'" ' ?><? endforeach; ?> >

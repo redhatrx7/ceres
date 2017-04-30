@@ -4,18 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div id="container">
 	<h1>Welcome</h1>
-	<a href="login" class="signout">signout</a>
-
-	<? if (! empty($results)): ?>
-	<ul>
-		<? foreach($results as $result) : ?>
-			<li><?=$result->name ?></li>
-		<? endforeach;?>
-	</ul>
-	<? endif; ?>
-
+	<?= anchor('login', 'signout', array('class' => 'signout')) ?>
 
 	<div id="body">
+		<? if(isset($session['username'])): ?>
+			<p><?=$session['username'] ?> is logged in</p>
+		<? endif; ?>
 		<p>The page you are looking at is being generated.</p>
 
 		<p>If you would like to edit this page you'll find it located at:</p>

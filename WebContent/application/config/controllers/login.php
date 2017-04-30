@@ -6,9 +6,10 @@ $config = array(
 		'meta' => array(
 			array('name' => 'description', 'content' => 'this is the login page'),
 			array('name' => 'author', 'content' => 'Daniel Demetroulis'),
-			array('charset' => 'UTF-8')
+			array('http-equiv' => 'Content-Type', 'content' + 'text/html', 'charset' => 'UTF-8')
 		),
 		'js' => array(
+			asset_url().'js/general/helper/ajax.js',
 			asset_url().'js/controllers/login/login.js'
 		),
 		'css' => array(

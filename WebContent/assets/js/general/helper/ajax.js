@@ -42,6 +42,12 @@ app.helper.Ajax = class
 		let response = null;
 		let error = null;
 
+		if ( typeof data === 'function' )
+		{
+			callback = data;
+			data = null;
+		}
+
 		$.ajax({
 			url: endpoint,
 			type: type,

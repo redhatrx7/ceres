@@ -1,12 +1,22 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
 <div id="login" class="fill">
+	<div id="language-select" class="dropdown">
+	  <button class="btn btn-secondary dropdown-toggle" type="button" id="language-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    <?=lang($language) ?>
+	  </button>
+	  <div class="dropdown-menu" aria-labelledby="language-dropdown">
+	  	<? foreach($languages as $lang): ?>
+	  		<?= anchor('login', lang($lang), array('class' => 'dropdown-item ' . (($language === $lang) ? "disabled" : ""), 'data-value' => $lang)) ?>
+	  	<? endforeach; ?>
+	  </div>
+	</div>
 	<div class="container stretch-height">
 		<div class="row justify-content-center align-items-center stretch-height">
 			<div class="login-form col-lg-8 col-md-10 col-sm-12">
 				<div class="card">
 					<div class="card-header">
-						Sign In
+						<?=lang('signin') ?>
 					</div>
 					<div style="padding-top:30px" class="card-block">
 						<?= form_open('/login', array('id' => 'login', 'class' => 'test', 'method' => 'post' )); ?>
@@ -18,7 +28,7 @@
 							        'id'            => 'username',
 									'value'			=> set_value('username', $data['username']),
 									'class'			=> 'form-control',
-									'placeholder'	=> 'username or email',
+									'placeholder'	=> lang('email_or_username'),
 									'title'			=> form_error('username'),
 									'data-toggle'	=> 'tooltip',
 									'data-placement'=> 'top'
@@ -32,7 +42,7 @@
 							        'id'            => 'password',
 									'value'			=> ($data['show_password']) ? set_value('password', $data['password']) : '',
 									'class'			=> 'form-control',
-									'placeholder'	=> 'password',
+									'placeholder'	=> lang('password'),
 									'title'			=> form_error('password'),
 									'data-toggle'	=> 'tooltip',
 									'data-placement'=> 'bottom'
@@ -46,14 +56,19 @@
 							        'name'          => 'remember',
 							        'id'            => 'login-remember',
 								))?>
-								Remember me
+								<?=lang('remember_me') ?>
 								</label>
 							</div>
 						</div>
-						<div class="form-group">
-							<?=form_submit('login', 'Login', array(
-									'class'			=> 'btn btn-primary'
-							))?>
+						<div class="form-group row">
+							<div class="col">
+								<?=form_submit('login', lang('login'), array(
+										'class'			=> 'btn btn-primary'
+								))?>
+							</div>
+							<div class="col col-md-auto align-self-center">
+								<?= anchor('signup', lang('register'), array('class' => 'em09 text-primary')) ?>
+							</div>
 						</div>
 						<?= form_close() ?>
 					</div>

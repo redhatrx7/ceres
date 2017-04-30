@@ -3,7 +3,7 @@ $(document).ready(function(){
 	$('[data-toggle="tooltip"]').on('change keydown', function(){
 		$(this).tooltip('dispose');
 	});
-	
+
 	$('#login').on('submit', function( event ){
 		let emptyFields = $('input:text, input:password', '#login').filter(function(){return this.value === ''});
 		emptyFields.each(function(index, value){
@@ -14,5 +14,21 @@ $(document).ready(function(){
 		{
 			return false;
 		}
+	});
+
+	$('#login').on('click', 'a.dropdown-item', function( event ){
+		let language = $(this).data('value');
+		if ( ! $(this).hasClass('disabled') )
+		{
+			app.helper.Ajax.get(`login/language/${language}`, function( response ){
+				
+					if ( response.success === 'success' )
+					{
+						window.location.href = event.target.href;
+					}
+					$('#language-dropdown').dropdown('toggle');
+			});
+		}
+		return false;
 	});
 });

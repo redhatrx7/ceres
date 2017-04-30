@@ -6,19 +6,18 @@ class Login extends MY_Controller
 	{
 		parent::__construct();
 
-		$this->load->helper('form');
+		$this->load->helper(array('form', 'language'));
 		$this->load->library('form_validation');
-		$this->load->library('session');
 		$this->load->model('user');
 		$this->load->library('remember_me');
 		$this->form_validation->set_error_delimiters('', '');
+		$this->lang->load(array('general', 'login'), $this->language);
 	}
 
-	public function index()
+	public function index($language=NULL)
 	{
 		$data = array('username' => '', 'password' => '', 'show_password' => FALSE);
 		$session = $this->session->userdata();
-		print_r($session);
 
 		if ( $this->input->post() )
 		{
@@ -47,9 +46,11 @@ class Login extends MY_Controller
 					}
 
 					$this->session->set_userdata(array(
-						'username'	=> $user->username,
-						'email'		=> $user->email,
-						'loggedIn'	=> TRUE
+						'user' => array(
+							'username'	=> $user->username,
+							'email'		=> $user->email,
+							'loggedIn'	=> TRUE
+						)
 					));
 
 					redirect('/welcome');
@@ -59,7 +60,7 @@ class Login extends MY_Controller
 				}
 			}
 		}
-		elseif( ! isset($session['username']))
+		elseif( ! isset($session['user']))
 		{
 			$remember = $this->remember_me->validate_cookie();
 
@@ -76,7 +77,19 @@ class Login extends MY_Controller
 			}
 		}
 
-		$this->show_view('login', array('data' => $data));
+		// sort language list and put current language to the top
+		$languages = $this->config->item('languages');
+		asort($languages);
+		$key = array_search($this->language, $languages);
+		unset($languages[$key]);
+		array_unshift($languages, $this->language);
+
+		$this->show_view('login', array(
+				'data' => $data,
+				'language' => $this->language,
+				'languages' => $languages
+			)
+		);
 	}
 
 	private function validate_user( $username, $password )
@@ -102,5 +115,20 @@ class Login extends MY_Controller
 		$this->remember_me->remove_cookie();
 
 		$this->load->view('json', array('response' => array('passed' => TRUE)));
+	}
+
+	public function get_language($language)
+	{
+		$languages = $this->config->item('languages');
+		if ( in_array($language, $languages) )
+		{
+			$this->session->set_userdata('language', $language);
+			$this->load->view('json', array('response' => array('language' => $language)));
+		}
+		else
+		{
+			header('X-Error-Message: Invalid Request', true, 400);
+			die();
+		}
 	}
 }

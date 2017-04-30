@@ -14,6 +14,7 @@ class MY_Controller extends CI_Controller
 	protected $class_name = 'MY_Controller';
 	protected $has_header = FALSE;
 	protected $has_footer = FALSE;
+	protected $language = 'en';
 
 	public function __construct()
 	{
@@ -24,9 +25,11 @@ class MY_Controller extends CI_Controller
 
 		$this->class_name = strtolower(get_class($this));
 		$this->load->config('controllers/' . $this->class_name, FALSE, TRUE);
+		$this->load->library('session');
 		$this->class_config = $this->config->item($this->class_name);
 		$this->has_header = isset($this->class_config['header']);
 		$this->has_footer = isset($this->class_config['footer']);
+		$this->language = ($this->session->userdata('language')) ? $this->session->userdata('language') : $this->config->item('language');
 
 		// Load class configs
 		if ($this->has_header)
@@ -176,7 +179,7 @@ class MY_Controller extends CI_Controller
 			$meta = $this->class_config['meta'];
 		}
 
-		$this->load->view('header', array('css' => $css, 'js' => $header_js, 'title' => $title, 'meta' => $meta));
+		$this->load->view('header', array('css' => $css, 'js' => $header_js, 'title' => $title, 'meta' => $meta, 'language' => $this->language));
 		$this->load->view($view, $parameters);
 		$this->load->view('footer', array('js' => $footer_js));
 	}
