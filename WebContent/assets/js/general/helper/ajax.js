@@ -1,3 +1,4 @@
+var app = app || {helper:{}};
 app.helper.Ajax = class
 {
 	constructor()

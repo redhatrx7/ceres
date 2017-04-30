@@ -3,7 +3,7 @@
 <div id="login" class="fill">
 	<div class="container stretch-height">
 		<div class="row justify-content-center align-items-center stretch-height">
-			<div class="login-form col-8">
+			<div class="login-form col-lg-8 col-md-10 col-sm-12">
 				<div class="card">
 					<div class="card-header">
 						Sign In
@@ -19,9 +19,9 @@
 									'value'			=> set_value('username', $data['username']),
 									'class'			=> 'form-control',
 									'placeholder'	=> 'username or email',
-									'required'		=> 'required',
 									'title'			=> form_error('username'),
-									'data-toggle'	=> 'tooltip'
+									'data-toggle'	=> 'tooltip',
+									'data-placement'=> 'top'
 							))?>
 						</div>
 						<div class="input-group">
@@ -30,12 +30,12 @@
 									'type'			=> 'password',
 							        'name'          => 'password',
 							        'id'            => 'password',
-									'value'			=> set_value('password', $data['password']),
+									'value'			=> ($data['show_password']) ? set_value('password', $data['password']) : '',
 									'class'			=> 'form-control',
 									'placeholder'	=> 'password',
-									'required'		=> 'required',
 									'title'			=> form_error('password'),
-									'data-toggle'	=> 'tooltip'
+									'data-toggle'	=> 'tooltip',
+									'data-placement'=> 'bottom'
 							))?>
 						</div>
 						<div class="input-group">

@@ -28,8 +28,6 @@ class Welcome extends MY_Controller
 
 	public function index()
 	{
-		print_r($this->input->get('username'));
-		print_r($this->input->post('username'));
 		$results = $this->user->get_users();
 		$this->show_view('welcome_message', array('results' => $results));
 	}

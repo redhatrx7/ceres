@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div id="container">
 	<h1>Welcome</h1>
+	<a href="login" class="signout">signout</a>
 
 	<? if (! empty($results)): ?>
 	<ul>

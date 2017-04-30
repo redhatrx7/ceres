@@ -16,8 +16,9 @@ class Login extends MY_Controller
 
 	public function index()
 	{
-		$data = array('username' => '', 'password' => '');
+		$data = array('username' => '', 'password' => '', 'show_password' => FALSE);
 		$session = $this->session->userdata();
+		print_r($session);
 
 		if ( $this->input->post() )
 		{
@@ -28,7 +29,8 @@ class Login extends MY_Controller
 
 			$this->form_validation->set_rules((strpos($username, '@')) ?
 					$validation['login_email'] : $validation['login_username']);
-			if ($this->form_validation->run() !== FALSE)
+
+			if ($this->form_validation->run() === TRUE)
 			{
 				if ($user = $this->validate_user($username, $password))
 				{
@@ -50,7 +52,10 @@ class Login extends MY_Controller
 						'loggedIn'	=> TRUE
 					));
 
-					redirect('/test');
+					redirect('/welcome');
+				}
+				else {
+					$this->form_validation->set_post_validation_error('password', 'no_user');
 				}
 			}
 		}
@@ -63,6 +68,7 @@ class Login extends MY_Controller
 				$user = $this->user->get_user_by_id($remember->user_id);
 				$data['username'] = $user->username;
 				$data['password'] = $remember->password;
+				$data['show_password'] = TRUE;
 				if ( ! empty($user))
 				{
 					$this->show_view('login', array('data' => $data));
@@ -88,5 +94,13 @@ class Login extends MY_Controller
 		}
 
 		return FALSE;
+	}
+
+	public function get_signout()
+	{
+		$this->session->sess_destroy();
+		$this->remember_me->remove_cookie();
+
+		$this->load->view('json', array('response' => array('passed' => TRUE)));
 	}
 }
