@@ -11,3 +11,6 @@
     #login .card .card-block .input-group .input-group-addon {
       background-color: #337ab7;
       color: white; }
+
+#login #language-select {
+  position: absolute; }

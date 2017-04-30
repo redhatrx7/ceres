@@ -7,3 +7,4 @@ $lang['email_or_username'] = 'email or username';
 $lang['password'] = 'password';
 $lang['remember_me'] = 'Remember me';
 $lang['register'] = 'Create Account';
+$lang['forgot_password'] = 'Forgot Password';

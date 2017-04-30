@@ -70,6 +70,11 @@
 								<?= anchor('signup', lang('register'), array('class' => 'em09 text-primary')) ?>
 							</div>
 						</div>
+						<div class="form-group row">
+							<div class="col">
+								<?= anchor('forgot', lang('forgot_password'), array('class' => 'em09 text-primary')) ?>
+							</div>
+						</div>
 						<?= form_close() ?>
 					</div>
 				</div>
