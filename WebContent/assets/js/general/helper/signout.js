@@ -2,15 +2,14 @@
 {
 	"use strict"
 	/**
-	 * @class Signout
+	 * @class app.helper.Signout
 	 * 
 	 * Handles the signout process
 	 * 
-	 * @module ceres
 	 * @author Daniel Demetroulis
 	 * @since version 1.0.0
 	 */
-	class Signout
+	app.helper.Signout = class
 	{
 		constructor()
 		{
@@ -36,6 +35,6 @@
 	// Intializes handlers for signout class 
 	$(document).ready(function()
 	{
-		Signout.initSignout();
+		app.helper.Signout.initSignout();
 	});
 })()

@@ -7,6 +7,7 @@ var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
 var minify = require('gulp-minify-css');
 var watch = require('gulp-watch');
+var jsdoc = require('gulp-jsdoc3');
 var fs = require('fs');
 
 /**
@@ -155,4 +156,9 @@ gulp.task('watch', function() {
 	watch('jsx/**/*.jsx', function() {
 		gulp.start('react');
     });
+});
+
+gulp.task('doc', function (cb) {
+    gulp.src(['WebContent/assets/js/general/**/*.js', 'WebContent/assets/js/controllers/**/*.js', 'WebContent/assets/js/controllers/react/**/*.js'], {read: false})
+        .pipe(jsdoc(cb));
 });

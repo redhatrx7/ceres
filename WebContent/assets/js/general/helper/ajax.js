@@ -1,13 +1,10 @@
-var app = app || {helper:{}};
 /**
- * @class Ajax
+ * @class app.helper.Ajax
  * 
- * Handles ajax operations
+ * @description Handles ajax operations
  * 
- * @module ceres
  * @author Daniel Demetroulis
  * @since version 1.0.0
- * @namespace app.helper
  */
 app.helper.Ajax = class
 {

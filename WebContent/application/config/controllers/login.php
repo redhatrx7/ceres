@@ -9,6 +9,7 @@ $config = array(
 			array('http-equiv' => 'Content-Type', 'content' + 'text/html', 'charset' => 'UTF-8')
 		),
 		'js' => array(
+			asset_url().'js/general/sp_core/namespace.js',
 			asset_url().'js/general/helper/ajax.js',
 			asset_url().'js/controllers/login/login.js'
 		),

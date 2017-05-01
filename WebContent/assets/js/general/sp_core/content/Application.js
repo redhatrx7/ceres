@@ -1,12 +1,10 @@
 /**
- * @class Application
+ * @class sp_core.Application
  * 
  * @description Starting point for one page applications
  * 
- * @module ceres
  * @author Daniel Demetroulis
  * @since version 1.0.0
- * @namespace sp_core
  */
 sp_core.Application = class
 {

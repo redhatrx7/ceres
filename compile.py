@@ -80,6 +80,8 @@ for controller in controllers:
     controller_css[os.path.basename(controller).replace('.php', '')] = css + controllerCssFiles
 
 # Initiate gulp sequence
+if not parameters or 'doc' in parameters:
+    subprocess.check_call(dir_path + '/node_modules/.bin/gulp doc', shell=True)
 if not parameters or 'copy' in parameters:
     subprocess.check_call(dir_path + '/node_modules/.bin/gulp copy', shell=True)
 if not parameters or 'react' in parameters:

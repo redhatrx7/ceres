@@ -12,6 +12,7 @@ $config = array(
 			asset_url().'css/general/codeigniter.css'
 		),
 		'js' => array(
+				asset_url().'js/general/sp_core/namespace.js',
 				asset_url().'js/third_party/jquery.min.js',
 				asset_url().'js/general/helper/ajax.js',
 				asset_url().'js/general/helper/signout.js'

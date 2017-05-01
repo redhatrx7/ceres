@@ -1,12 +1,10 @@
 /**
- * @class Controller
+ * @class sp_core.Controller
  * 
  * @description Base Controller
  * 
- * @module ceres
  * @author Daniel Demetroulis
  * @since version 1.0.0
- * @namespace sp_core
  */
 sp_core.Controller = class
 {
@@ -17,7 +15,7 @@ sp_core.Controller = class
 	}
 
 	/**
-	 * To be overriden
+	 * @description loads the view
 	 */
 	load()
 	{

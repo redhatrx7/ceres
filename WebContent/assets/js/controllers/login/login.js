@@ -1,16 +1,15 @@
 /**
- * @class Login
+ * @class app.login.Login
  * 
  * @description Handling for the login controller page
  * 
- * @module ceres
  * @author Daniel Demetroulis
  * @since version 1.0.0
  */
 ;(function()
 {
 	"use strict"
-	class Login
+	app.login.Login = class
 	{
 		constructor()
 		{
@@ -84,8 +83,8 @@
 	 */
 	$(document).ready(function()
 	{
-		Login.initTooltipEvents();
-		Login.initLanguageDropdownClick();
-		Login.initSubmitLoginValidation();
+		app.login.Login.initTooltipEvents();
+		app.login.Login.initLanguageDropdownClick();
+		app.login.Login.initSubmitLoginValidation();
 	});
 })()

@@ -1,12 +1,10 @@
 /**
- * @class Home
+ * @class app.view.Home
  * 
  * @description Home view
  * 
- * @module ceres
  * @author Daniel Demetroulis
  * @since version 1.0.0
- * @namespace app.view
  */
 app.view.Home = class {
 	constructor()

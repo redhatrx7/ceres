@@ -1,12 +1,10 @@
 /**
- * @class Router
+ * @class sp_core.Router
  * 
  * @description Base Controller
  * 
- * @module ceres
  * @author Daniel Demetroulis
  * @since version 1.0.0
- * @namespace sp_core
  */
 sp_core.Router = class
 {
