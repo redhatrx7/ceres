@@ -2,11 +2,19 @@
 
 if ( ! function_exists('get_all_files'))
 {
-	function get_all_files( $directory, $path )
+	/**
+	 * Get all files in all directories within $directory
+	 * @param string $directory
+	 * @param string $path
+	 * @return array
+	 */
+	function get_all_files($directory, $path)
 	{
 	   $files = array();
 	   $directories = array();
-	   foreach( $directory as $index => $dir )
+
+	   // Get each file in current directory
+	   foreach($directory as $index => $dir)
 	   {
 	   		if( is_array($dir) )
 	   		{
@@ -18,6 +26,7 @@ if ( ! function_exists('get_all_files'))
 	   		}
 	   }
 
+	   // Get all files within all sub directories
 	   foreach($directories as $index => $directory)
 	   {
 	   		$new_path = $path.str_replace('\\', '/', $index);

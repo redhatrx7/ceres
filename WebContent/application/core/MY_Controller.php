@@ -3,17 +3,48 @@
 /**
  * Extends the system/core CI_Controller class
  * @author Daniel Demetroulis
- * @reference WebContent/application/config/controllers
- * @reference WebContent/application/config/footers
- * @reference WebContent/application/config/headers
+ * @see WebContent/application/config/controllers
+ * @see WebContent/application/config/footers
+ * @see WebContent/application/config/headers
  *
  */
 class MY_Controller extends CI_Controller
 {
+	/**
+	 * The current class config array
+	 * @var array
+	 * @see config/controllers
+	 */
 	protected $class_config = array();
+
+	/**
+	 * The current classes name
+	 * 
+	 * @var string
+	 */
 	protected $class_name = 'MY_Controller';
+
+	/**
+	 * Whether the class has a header file
+	 * @see config/headers
+	 *
+	 * @var string
+	 */
 	protected $has_header = FALSE;
+
+	/**
+	 * Whether the class has a footer file
+	 * @see config/footers
+	 *
+	 * @var string
+	 */
 	protected $has_footer = FALSE;
+
+	/**
+	 * Current language being used
+	 * 
+	 * @var string
+	 */
 	protected $language = 'en';
 
 	public function __construct()
@@ -24,14 +55,13 @@ class MY_Controller extends CI_Controller
 		$this->load->helper('filesystem');
 
 		$this->class_name = strtolower(get_class($this));
-		$this->load->config('controllers/' . $this->class_name, FALSE, TRUE);
 		$this->load->library('session');
 		$this->class_config = $this->config->item($this->class_name);
 		$this->has_header = isset($this->class_config['header']);
 		$this->has_footer = isset($this->class_config['footer']);
-		$this->language = ($this->session->userdata('language')) ? $this->session->userdata('language') : $this->config->item('language');
 
 		// Load class configs
+		$this->load->config('controllers/' . $this->class_name, FALSE, TRUE);
 		if ($this->has_header)
 		{
 			$this->load->config('headers/' . $this->class_config['header']);
@@ -41,6 +71,9 @@ class MY_Controller extends CI_Controller
 		{
 			$this->load->config('footers/'. $this->class_config['footer'], FALSE, TRUE);
 		}
+
+		// Get currently set language
+		$this->language = ($this->session->userdata('language')) ? $this->session->userdata('language') : $this->config->item('language');
 	}
 
 	/**
@@ -92,6 +125,9 @@ class MY_Controller extends CI_Controller
 		$title = $this->class_name;
 		$meta = array();
 
+		/**
+		 * Used in both development and production for external js files that cannot be included in the minified js file
+		 */
 		if ($this->has_header)
 		{
 			if ( ! empty($this->config->item($this->class_config['header'])['external_js']))
@@ -100,7 +136,7 @@ class MY_Controller extends CI_Controller
 			}
 		}
 
-		// @reference .htaccess
+		// @see .htaccess
 		if (ENVIRONMENT == 'development')
 		{
 			// This is a development environment: load each css and js individually
