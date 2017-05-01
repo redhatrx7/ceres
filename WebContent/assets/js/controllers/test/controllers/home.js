@@ -1,3 +1,12 @@
+/**
+ * @class Home
+ * 
+ * @description Home controller
+ * @module ceres
+ * @author Daniel Demetroulis
+ * @since version 1.0.0
+ * @namespace app.controller
+ */
 app.controller.Home = class extends sp_core.Controller
 {
 	constructor()
@@ -9,6 +18,7 @@ app.controller.Home = class extends sp_core.Controller
 		app.event.Home.initialize();
 	}
 
+	// load the view
 	load( parameters )
 	{
 		this.models['home'].fetch();

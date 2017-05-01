@@ -55,13 +55,12 @@ class MY_Controller extends CI_Controller
 		$this->load->helper('filesystem');
 
 		$this->class_name = strtolower(get_class($this));
+		$this->load->config('controllers/' . $this->class_name, FALSE, TRUE);
 		$this->load->library('session');
 		$this->class_config = $this->config->item($this->class_name);
 		$this->has_header = isset($this->class_config['header']);
 		$this->has_footer = isset($this->class_config['footer']);
 
-		// Load class configs
-		$this->load->config('controllers/' . $this->class_name, FALSE, TRUE);
 		if ($this->has_header)
 		{
 			$this->load->config('headers/' . $this->class_config['header']);
@@ -137,7 +136,7 @@ class MY_Controller extends CI_Controller
 		}
 
 		// @see .htaccess
-		if (ENVIRONMENT == 'development')
+		if (ENVIRONMENT !== 'production')
 		{
 			// This is a development environment: load each css and js individually
 			if ($this->has_header)
@@ -151,7 +150,6 @@ class MY_Controller extends CI_Controller
 				{
 					$header_js = array_merge($header_js, $this->config->item($this->class_config['header'])['js']);
 				}
-				
 			}
 			
 			if ($this->has_footer)

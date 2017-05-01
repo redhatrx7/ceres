@@ -1,3 +1,13 @@
+/**
+ * @class Home
+ * 
+ * @description Home model
+ * 
+ * @module ceres
+ * @author Daniel Demetroulis
+ * @since version 1.0.0
+ * @namespace app.model
+ */
 app.model.Home = class
 {
 	constructor()
