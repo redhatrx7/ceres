@@ -8,4 +8,6 @@
 
 /.pydevproject
 /docs/**/*
+/phpdocs/**/*
 /composer/vendor/**/*
+/composer/*.lock

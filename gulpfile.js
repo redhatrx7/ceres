@@ -9,7 +9,7 @@ var minify = require('gulp-minify-css');
 var watch = require('gulp-watch');
 var jsdoc = require('gulp-jsdoc3');
 var fs = require('fs');
-var run = require('gulp-run');
+var exec = require('child_process').exec;
 
 /**
  * Script for running gulp commands for compiling ceres jsx, sass, css, js, etc.
@@ -162,4 +162,13 @@ gulp.task('watch', function() {
 gulp.task('doc', function (cb) {
     gulp.src(['WebContent/assets/js/general/**/*.js', 'WebContent/assets/js/controllers/**/*.js', 'WebContent/assets/js/controllers/react/**/*.js'], {read: false})
         .pipe(jsdoc(cb));
+});
+
+gulp.task('phpdoc', function (cb) {
+	process.chdir('composer/vendor/bin');
+	exec('phpdoc -d ../../../WebContent/application -t ../../../phpdocs', function (err, stdout, stderr) {
+	    console.log(stdout);
+	    console.log(stderr);
+	    cb(err);
+	  });
 });

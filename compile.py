@@ -82,6 +82,8 @@ for controller in controllers:
 # Initiate gulp sequence
 if not parameters or 'doc' in parameters:
     subprocess.check_call(dir_path + '/node_modules/.bin/gulp doc', shell=True)
+if not parameters or 'phpdoc' in parameters:
+    subprocess.check_call(dir_path + '/node_modules/.bin/gulp phpdoc', shell=True)
 if not parameters or 'copy' in parameters:
     subprocess.check_call(dir_path + '/node_modules/.bin/gulp copy', shell=True)
 if not parameters or 'react' in parameters:
