@@ -16,6 +16,7 @@ sp_core.Controller = class
 
 	/**
 	 * @description loads the view
+	 * @param {Array<string>} parameters - URI parameters
 	 */
 	load()
 	{

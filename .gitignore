@@ -8,3 +8,4 @@
 
 /.pydevproject
 /docs/**/*
+/composer/vendor/**/*

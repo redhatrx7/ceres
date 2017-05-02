@@ -9,6 +9,7 @@ var minify = require('gulp-minify-css');
 var watch = require('gulp-watch');
 var jsdoc = require('gulp-jsdoc3');
 var fs = require('fs');
+var run = require('gulp-run');
 
 /**
  * Script for running gulp commands for compiling ceres jsx, sass, css, js, etc.

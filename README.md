@@ -21,6 +21,7 @@ Intallation
 *******************
 * You will need to install node.js
 * (Optional: install python)
+* install composer (run: composer install in /composer)
 
 *******************
 EZ setup help
