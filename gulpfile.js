@@ -169,6 +169,5 @@ gulp.task('phpdoc', function (cb) {
 	exec('phpdoc -d ../../../WebContent/application -t ../../../phpdocs', function (err, stdout, stderr) {
 	    console.log(stdout);
 	    console.log(stderr);
-	    cb(err);
 	  });
 });
