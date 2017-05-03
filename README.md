@@ -22,7 +22,7 @@ Intallation
 * You will need to install node.js
 * (Optional: install python)
 * install composer (run: composer install in /composer)
-* C:\Users\ddemetroulis\ceres\composer\vendor\bin\phpunit --configuration phpunit.xml
+* php index.php tests Test
 
 *******************
 EZ setup help
