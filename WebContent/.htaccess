@@ -8,4 +8,4 @@ RewriteRule ^(.*)$ index.php/$1 [L,QSA]
 
 Options -Indexes
 
-SetEnv CI_ENV unittest
+SetEnv CI_ENV development
