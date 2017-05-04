@@ -11,3 +11,4 @@
 /phpdocs/**/*
 /composer/vendor/**/*
 /composer/*.lock
+/unittests

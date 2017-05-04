@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 /*
 | -------------------------------------------------------------------
 | DATABASE CONNECTIVITY SETTINGS
@@ -78,7 +77,7 @@ $db['default'] = array(
 	'hostname' => 'localhost',
 	'username' => 'ci',
 	'password' => 'password',
-	'database' => 'mydb',
+	'database' => (ENVIRONMENT === 'unittest') ? 'mydb_test' : 'mydb',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

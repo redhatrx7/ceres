@@ -45,7 +45,7 @@ class MY_Controller extends CI_Controller
 	 * 
 	 * @var string
 	 */
-	protected $language = 'en';
+	protected $language = 'english';
 
 	public function __construct()
 	{

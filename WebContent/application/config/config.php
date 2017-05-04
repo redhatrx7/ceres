@@ -77,8 +77,8 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= 'en';
-$config['languages'] = array('en', 'es');
+$config['language']	= 'english';
+$config['languages'] = array('english', 'spanish');
 /*
 |--------------------------------------------------------------------------
 | Default Character Set
