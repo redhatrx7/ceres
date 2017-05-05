@@ -12,3 +12,4 @@
 /composer/vendor/**/*
 /composer/*.lock
 /unittests
+/WebContent/vendor
