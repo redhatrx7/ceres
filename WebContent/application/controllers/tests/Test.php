@@ -12,11 +12,11 @@ class Test extends MY_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		if(!$this->input->is_cli_request())
-		{
-			header('X-Error-Message: Not Found', true, 404);
-			exit();
-		}
+		//if(!$this->input->is_cli_request())
+		//{
+			//header('X-Error-Message: Not Found', true, 404);
+			//exit();
+		//}
 		$this->load->helper('url');
 		$this->load->library(array('guzzle', 'unit_test'));
 	}
