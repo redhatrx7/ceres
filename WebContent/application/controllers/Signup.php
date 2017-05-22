@@ -24,7 +24,7 @@ class Signup extends MY_Controller
 		// Models
 		$this->load->model('user');
 
-		$this->lang->load(array('general', 'login'), $this->language);
+		$this->lang->load(array('general', 'login', 'signup'), $this->language);
 		$this->form_validation->set_error_delimiters('', '');
 	}
 

@@ -21,7 +21,7 @@ Intallation
 *******************
 * You will need to install node.js
 * (Optional: install python)
-* install composer (run: composer install in /composer)
+* install composer (run: composer install in /composer and /WebContent) or run the install.py script
 
 *******************
 EZ setup help
@@ -40,11 +40,11 @@ Project Setup
 **************************
 
 * In the root directory of this project run "npm install" in your command line
-* currently there is no single script for the gulp. so in the same directory run these commands:
+* so in the same directory run these commands:
   * node_modules\.bin\gulp copy (this will copy your node module files being used to your assets)
   * node_modules\.bin\gulp react (this will compile your jsx)
   * node_modules\.bin\gulp sass (this will compile you sass)
-* There is also a python script to run these gulp commands as an eclipse external tool (you will need to make an external tool that runs this script or run this script by hand).
+* There is also a python script to run these gulp commands as an eclipse external tool (you will need to make an external tool that runs this script or run this script by hand). run compile.py
 * watch tasks for JSX and SASS are added to grunt file, you may need to refresh the project after if publishing through eclipse.
 
 *******************

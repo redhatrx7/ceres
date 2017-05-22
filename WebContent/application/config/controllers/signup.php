@@ -13,7 +13,8 @@ $config = array(
 			asset_url().'js/general/helper/ajax.js',
 		),
 		'css' => array(
-			asset_url().'css/general/content.css'
+			asset_url().'css/general/content.css',
+				asset_url().'css/controller/signup.css'
 		),
 		'header' => 'basic_header',
 		'footer' => 'footer'

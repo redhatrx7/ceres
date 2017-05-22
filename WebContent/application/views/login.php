@@ -19,7 +19,7 @@
 						<?=lang('signin') ?>
 					</div>
 					<div style="padding-top:30px" class="card-block">
-						<?= form_open('/login', array('id' => 'login', 'class' => 'test', 'method' => 'post' )); ?>
+						<?= form_open('/login', array('id' => 'login', 'method' => 'post' )); ?>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-user"></i></span>
 							<?= form_input(array(
@@ -63,7 +63,7 @@
 						<div class="form-group row">
 							<div class="col">
 								<?=form_submit('login', lang('login'), array(
-										'class'			=> 'btn btn-primary'
+									'class'	=> 'btn btn-primary'
 								))?>
 							</div>
 							<div class="col col-md-auto align-self-center">
