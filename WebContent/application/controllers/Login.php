@@ -31,12 +31,11 @@ class Login extends MY_Controller
 
 	/**
 	 * Loads Initial login page view
-	 *
-	 * @param string $language
+	 * 
 	 * @return login (View)
 	 */
-	public function index($language=NULL)
-	{
+	public function index()
+	{ 
 		$session = $this->session->userdata();
 
 		// Basic array to fill in form data for login (current username, password, and whether to fill in the password)

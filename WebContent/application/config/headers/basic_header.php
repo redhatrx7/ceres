@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 $config = array(
-		'login_header' => array(
+		'basic_header' => array(
 			'css' => array (
 				asset_url().'css/third_party/jquery-ui.min.css',
 				asset_url().'css/third_party/tether.min.css',

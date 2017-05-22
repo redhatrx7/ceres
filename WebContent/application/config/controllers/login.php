@@ -17,7 +17,7 @@ $config = array(
 			asset_url().'css/general/content.css',
 			asset_url().'css/controller/login.css'
 		),
-		'header' => 'login_header',
+		'header' => 'basic_header',
 		'footer' => 'footer',
 		'validation' => array(
 			'login_username' => array(
