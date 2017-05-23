@@ -73,6 +73,7 @@ class MY_Controller extends CI_Controller
 
 		// Get currently set language
 		$this->language = ($this->session->userdata('language')) ? $this->session->userdata('language') : $this->config->item('language');
+		$this->config->set_item('language', $this->language);
 	}
 
 	/**

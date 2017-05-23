@@ -52,10 +52,8 @@ class Signup extends MY_Controller
 			// $first_name, $last_name, $password, $username, $email, $email_confirm, $birthdate to current symbol table
 			extract($this->input->post());
 
-			// Uses password_hash($password, PASSWORD_DEFAULT)
+			// Validation on all form fields
 			$validation = $this->class_config['validation'];
-
-			// Use either the username or email validation
 			$this->form_validation->set_rules($validation);
 
 			// Is form data validated
@@ -78,12 +76,13 @@ class Signup extends MY_Controller
 
 			if ($error)
 			{
+				// If validation fails set field data
 				$data['username'] 	= $username;
 				$data['email'] 		= $email;
 				$data['first_name'] = $first_name;
 				$data['last_name'] 	= $last_name;
 				$data['birthdate'] 	= $birthdate;
-				$data['password'] = $password;
+				$data['password'] 	= $password;
 			}
 		}
 

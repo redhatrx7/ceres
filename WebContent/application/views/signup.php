@@ -119,7 +119,7 @@
 									'value'			=> set_value('birthdate', $data['birthdate']),
 									'data-toggle'	=> 'tooltip',
 									'data-required' => true,
-									'data-placement'=> 'bottom'
+									'data-placement'=> 'top'
 							))?>
 						</div>
 						<div class="form-group row create">
