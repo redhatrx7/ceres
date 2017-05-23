@@ -31,6 +31,7 @@
 									'placeholder'	=> lang('email_or_username'),
 									'title'			=> form_error('username'),
 									'data-toggle'	=> 'tooltip',
+									'data-required' => true,
 									'data-placement'=> 'top'
 							))?>
 						</div>
@@ -45,6 +46,7 @@
 									'placeholder'	=> lang('password'),
 									'title'			=> form_error('password'),
 									'data-toggle'	=> 'tooltip',
+									'data-required' => true,
 									'data-placement'=> 'bottom'
 							))?>
 						</div>

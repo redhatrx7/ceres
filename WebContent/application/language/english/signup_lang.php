@@ -9,3 +9,4 @@ $lang['last_name'] = 'last name';
 $lang['birthdate'] = 'Birthdate';
 $lang['signup'] = 'Sign Up';
 $lang['back'] = '< Go Back';
+$lang['password_confirm'] = 'confirm password';

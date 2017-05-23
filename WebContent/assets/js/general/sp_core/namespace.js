@@ -16,6 +16,8 @@ var sp_core = sp_core || {};
  */
 /** @namespace app.login
  */
-var app = app || {controller:{},event:{},model:{},view:{},helper:{},template:{},login:{}};
+/** @namespace app.signup
+ */
+var app = app || {controller:{},event:{},model:{},view:{},helper:{},template:{},login:{},signup:{}};
 var spCoreApp = null;
 var isDefaultController = true;

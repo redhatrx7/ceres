@@ -14,24 +14,28 @@
 						<div class="input-group">
 							<?= form_input(array(
 									'type'			=> 'text',
-									'name'			=> 'first-name',
+									'name'			=> 'first_name',
 									'id'			=> 'first-name',
 									'class'			=> 'form-control',
 									'placeholder'	=> lang('first_name'),
-									'title'			=> form_error('first-name'),
+									'title'			=> form_error('first_name'),
+									'value'			=> set_value('first_name', $data['first_name']),
 									'data-toggle'	=> 'tooltip',
+									'data-required' => true,
 									'data-placement'=> 'top'
 							))?>
 						</div>
 						<div class="input-group">
 							<?= form_input(array(
 									'type'			=> 'text',
-									'name'			=> 'last-name',
+									'name'			=> 'last_name',
 									'id'			=> 'last-name',
 									'class'			=> 'form-control',
 									'placeholder'	=> lang('last_name'),
-									'title'			=> form_error('last-name'),
+									'title'			=> form_error('last_name'),
+									'value'			=> set_value('last_name', $data['last_name']),
 									'data-toggle'	=> 'tooltip',
+									'data-required' => true,
 									'data-placement'=> 'top'
 							))?>
 						</div>
@@ -43,31 +47,63 @@
 									'class'			=> 'form-control',
 									'placeholder'	=> lang('username'),
 									'title'			=> form_error('username'),
+									'value'			=> set_value('username', $data['username']),
 									'data-toggle'	=> 'tooltip',
+									'data-required' => true,
 									'data-placement'=> 'top'
 							))?>
 						</div>
 						<div class="input-group">
 							<?= form_input(array(
-									'type'			=> 'text',
+									'type'			=> 'email',
 									'name'			=> 'email',
 									'id'			=> 'email',
 									'class'			=> 'form-control',
 									'placeholder'	=> lang('email'),
 									'title'			=> form_error('email'),
+									'value'			=> set_value('email', $data['email']),
 									'data-toggle'	=> 'tooltip',
-									'data-placement'=> 'top'
+									'data-required' => true,
+									'data-placement'=> 'bottom'
+							))?>
+						</div>
+						<div class="input-group email-confirm">
+							<?= form_input(array(
+									'type'			=> 'email',
+									'name'			=> 'email_confirm',
+									'id'			=> 'email-confirm',
+									'class'			=> 'form-control',
+									'placeholder'	=> lang('email_confirm'),
+									'title'			=> form_error('email_confirm'),
+									'data-toggle'	=> 'tooltip',
+									'data-required' => true,
+									'data-placement'=> 'bottom'
 							))?>
 						</div>
 						<div class="input-group">
 							<?= form_input(array(
-									'type'			=> 'text',
-									'name'			=> 'email-confirm',
-									'id'			=> 'email-confirm',
+									'type'			=> 'password',
+									'name'			=> 'password',
+									'id'			=> 'password',
 									'class'			=> 'form-control',
-									'placeholder'	=> lang('email_confirm'),
-									'title'			=> form_error('email-confirm'),
+									'placeholder'	=> lang('password'),
+									'title'			=> form_error('password'),
+									'value'			=> set_value('password', $data['password']),
 									'data-toggle'	=> 'tooltip',
+									'data-required' => true,
+									'data-placement'=> 'bottom'
+							))?>
+						</div>
+						<div class="input-group password-confirm">
+							<?= form_input(array(
+									'type'			=> 'password',
+									'name'			=> 'password_confirm',
+									'id'			=> 'password-confirm',
+									'class'			=> 'form-control',
+									'placeholder'	=> lang('password_confirm'),
+									'title'			=> form_error('password_confirm'),
+									'data-toggle'	=> 'tooltip',
+									'data-required' => true,
 									'data-placement'=> 'bottom'
 							))?>
 						</div>
@@ -77,9 +113,13 @@
 									'type'			=> 'date',
 									'name'			=> 'birthdate',
 									'id'			=> 'birthdate',
+									'min'			=> $data['min_date'],
+									'max'			=> date('Y-m-d'),
 									'title'			=> form_error('birthdate'),
+									'value'			=> set_value('birthdate', $data['birthdate']),
 									'data-toggle'	=> 'tooltip',
-									'data-placement'=> 'top'
+									'data-required' => true,
+									'data-placement'=> 'bottom'
 							))?>
 						</div>
 						<div class="form-group row create">

@@ -11,6 +11,7 @@ $config = array(
 		'js' => array(
 			asset_url().'js/general/sp_core/namespace.js',
 			asset_url().'js/general/helper/ajax.js',
+			asset_url().'js/general/helper/tooltip.js',
 			asset_url().'js/controllers/login/login.js'
 		),
 		'css' => array(

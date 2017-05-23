@@ -2,3 +2,4 @@
 
 $lang['form_validation_is_unique'] = 'The {field} chosen already exists';
 $lang['form_validation_no_user'] = 'The username or password is not valid';
+$lang['form_validation_invalid_date'] = 'The date passed is not valid';

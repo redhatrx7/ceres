@@ -2,7 +2,7 @@
 /**
  * Class handles the login page.
  * 
- * Signup page
+ * Signup page, create an account
  *
  * @package ceres
  * @author DDemetroulis
@@ -36,6 +36,57 @@ class Signup extends MY_Controller
 	public function index()
 	{
 		$data = array();
+		$today = new DateTime('now');
+		$ago = $today;
+		$error = FALSE;
+
+		// Basic array to fill in form data for signup
+		$data = array('username' => '', 'password' => '', 'email' => '', 'first_name' => '', 'last_name' => '', 'birthdate' => '');
+
+		$ago->modify('-150 year');
+		$data['min_date'] = $ago->format('Y-m-d');
+
+		// If the Create Account button has been pressed
+		if ($this->input->post())
+		{
+			// $first_name, $last_name, $password, $username, $email, $email_confirm, $birthdate to current symbol table
+			extract($this->input->post());
+
+			// Uses password_hash($password, PASSWORD_DEFAULT)
+			$validation = $this->class_config['validation'];
+
+			// Use either the username or email validation
+			$this->form_validation->set_rules($validation);
+
+			// Is form data validated
+			if ($this->form_validation->run() === TRUE)
+			{
+				if ( $birthdate > $ago AND $birthdate < $today )
+				{
+					//SUCCESS
+				}
+				else
+				{
+					$error = TRUE;
+					$this->form_validation->set_post_validation_error('birthdate', 'invalid_date');
+				}
+			}
+			else
+			{
+				$error = TRUE;
+			}
+
+			if ($error)
+			{
+				$data['username'] 	= $username;
+				$data['email'] 		= $email;
+				$data['first_name'] = $first_name;
+				$data['last_name'] 	= $last_name;
+				$data['birthdate'] 	= $birthdate;
+				$data['password'] = $password;
+			}
+		}
+
 		$this->show_view('signup', array(
 				'data' => $data,
 				'language' => $this->language

@@ -9,3 +9,4 @@ $lang['last_name'] = 'apellido';
 $lang['birthdate'] = 'Fecha de nacimiento';
 $lang['signup'] = 'Abre una cuenta';
 $lang['back'] = '< Regresa';
+$lang['password_confirm'] = 'confirmar contraseña';
