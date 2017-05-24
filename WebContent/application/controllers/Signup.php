@@ -37,7 +37,7 @@ class Signup extends MY_Controller
 	{
 		$data = array();
 		$today = new DateTime('now');
-		$ago = $today;
+		$ago = clone $today;
 		$error = FALSE;
 
 		// Basic array to fill in form data for signup
@@ -55,13 +55,32 @@ class Signup extends MY_Controller
 			// Validation on all form fields
 			$validation = $this->class_config['validation'];
 			$this->form_validation->set_rules($validation);
-
+			
 			// Is form data validated
 			if ($this->form_validation->run() === TRUE)
 			{
+				$birthdate = new DateTime($birthdate);
 				if ( $birthdate > $ago AND $birthdate < $today )
 				{
-					//SUCCESS
+					if ( $this->user->create_user(
+							array(
+								'firstname' => $first_name,
+								'lastname' 	=> $last_name,
+								'username' 	=> $username,
+								'email'		=> $email,
+								'password'	=> password_hash($password, PASSWORD_DEFAULT),
+								'birthdate' => $birthdate->format('Y-m-d')
+							)
+						)
+					)
+					{
+						$data['success_message'] = 'Your account has been successfully created! Close dialog to login.';
+					}
+					else
+					{
+						$error = TRUE;
+						$data['error_message'] = 'Unable to create account';
+					}
 				}
 				else
 				{

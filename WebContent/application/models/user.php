@@ -49,4 +49,24 @@ class user extends CI_Model {
 		$query = $this->db->select('*')->from('user')->where(array('id' => $id))->get();
 		return $query->row();
 	}
+
+	/**
+	 * Create a new user
+	 *
+	 * @param array $user
+	 * @return number
+	 */
+	public function create_user($user)
+	{
+		$this->db->insert('user', array(
+				'firstname' => $user['firstname'],
+				'lastname' 	=> $user['lastname'],
+				'username' 	=> $user['username'],
+				'email'		=> $user['email'],
+				'password'	=> $user['password'],
+				'birthdate' => $user['birthdate']
+			)
+		);
+		return $this->db->affected_rows();
+	}
 }

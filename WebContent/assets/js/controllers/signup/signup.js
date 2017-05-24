@@ -48,7 +48,30 @@
 				}
 			});
 		}
-		
+
+		static initSuccessContinue()
+		{
+			$('#success-dialog').on('hidden.bs.modal', function()
+			{
+				window.location.href = '/login';
+			});
+		}
+
+		static checkErrorMessage()
+		{
+			if( $('#error-dialog .modal-body p').html().trim())
+			{
+				$('#error-dialog').modal();
+			}
+		}
+
+		static checkSuccessMessage()
+		{
+			if( $('#success-dialog .modal-body p').html().trim())
+			{
+				$('#success-dialog').modal();
+			}
+		}
 	}
 
 	/**
@@ -57,6 +80,9 @@
 	$(document).ready(function()
 	{
 		app.signup.Signup.initConfirmToggle();
+		app.signup.Signup.initSuccessContinue();
 		app.helper.Tooltip.initTooltipEvents();
+		app.signup.Signup.checkErrorMessage();
+		app.signup.Signup.checkSuccessMessage();
 	});
 })()

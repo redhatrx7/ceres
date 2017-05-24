@@ -24,7 +24,7 @@ $config = array(
 			array(
 					'field' => 'first_name',
 					'label' => 'First Name',
-					'rules' => 'required|alpha_dash|xss_clean|trim|max_length[50]|min_length[2]',
+					'rules' => 'required|alpha|xss_clean|trim|max_length[50]|min_length[2]',
 					'errors' => array(
 							'required' => 'You must provide a %s.'
 					),
@@ -32,7 +32,7 @@ $config = array(
 			array(
 					'field' => 'last_name',
 					'label' => 'Last Name',
-					'rules' => 'required|alpha_dash|xss_clean|trimmax_length[50]|min_length[2]',
+					'rules' => 'required|alpha|xss_clean|trim|max_length[50]|min_length[2]',
 					'errors' => array(
 							'required' => 'You must provide a %s.'
 					),
