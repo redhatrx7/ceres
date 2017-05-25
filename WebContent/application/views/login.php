@@ -102,6 +102,16 @@
 										))?>
 									</div>
 								</div>
+								<div class="field-container">  
+  <input type="text" class="field" required placeholder="First name"/>
+  <label class="floating-label">First name</label> 
+  <div class="field-underline"></div>
+</div>
+<div class="field-container">  
+  <input type="text" class="field" required placeholder="Last name"/>
+  <label class="floating-label">Last name</label> 
+  <div class="field-underline"></div>
+</div>
 							<?= form_close() ?>
 						</div>
 					</div>
