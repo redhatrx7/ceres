@@ -98,13 +98,32 @@
 								<div class="form-group row">
 									<div class="col">
 										<?=form_submit('send_email', lang('send_email'), array(
-											'class'	=> 'btn btn-secondary pull-right'
+											'class'	=> 'btn btn-secondary pull-right', 'id' => 'send-email'
 										))?>
 									</div>
 								</div>
 							<?= form_close() ?>
 						</div>
 					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Dialogs -->
+	<div id="general-dialog" class="modal fade" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title"></h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('close') ?></button>
 				</div>
 			</div>
 		</div>

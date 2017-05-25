@@ -24,7 +24,7 @@
 		{
 			$('form').on('submit', function( event )
 			{
-				let emptyFields = $('input:visible[data-required="1"]', document)
+				let emptyFields = $('input:visible[data-required="1"]', $(this))
 					.filter(function(){return this.value === ''});
 
 				emptyFields.each(function(index, value)
@@ -45,7 +45,8 @@
 		 */
 		static initTooltipEvents()
 		{
-			$('[data-toggle="tooltip"]:visible').tooltip({trigger:'manual'}).tooltip('show');
+			$('[data-toggle="tooltip"]').tooltip({trigger:'manual'});
+			$('[data-toggle="tooltip"]:visible').tooltip('show');
 
 			$('[data-toggle="tooltip"]').on('change keydown', function()
 			{

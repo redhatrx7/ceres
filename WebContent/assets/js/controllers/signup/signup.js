@@ -49,6 +49,10 @@
 			});
 		}
 
+		/**
+		 * @description if signup was successful it re-routes to login
+		 * @returns void
+		 */
 		static initSuccessContinue()
 		{
 			$('#success-dialog').on('hidden.bs.modal', function()
@@ -57,6 +61,10 @@
 			});
 		}
 
+		/**
+		 * @description displays an error message if signup failed
+		 * @returns void
+		 */
 		static checkErrorMessage()
 		{
 			if( $('#error-dialog .modal-body p').html().trim())
@@ -65,6 +73,10 @@
 			}
 		}
 
+		/**
+		 * @description displays a success message if signup was successful
+		 * @returns void
+		 */
 		static checkSuccessMessage()
 		{
 			if( $('#success-dialog .modal-body p').html().trim())

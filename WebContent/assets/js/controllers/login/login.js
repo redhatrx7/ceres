@@ -41,11 +41,31 @@
 			});
 		}
 
+		/**
+		 * @description toggles view for forgot password if clicked
+		 * @returns void
+		 */
 		static initForgotPasswordClick()
 		{
 			$('#forgot-password-link').on('click', function()
 			{
 				$('#forgot-password-form').slideToggle();
+				return false;
+			});
+		}
+
+		/**
+		 * @description displays a feature not implemented dialog
+		 * @returns void
+		 */
+		static initSendEmailClick()
+		{
+			$('#forgot-password-form').on('submit', function( event )
+			{
+				$('#general-dialog .modal-title').text('Alert!');
+				$('#general-dialog .modal-body').html('<p>This feature is not yet implemented</p>');
+				$('#general-dialog').modal();
+
 				return false;
 			});
 		}
@@ -58,6 +78,7 @@
 	{
 		app.login.Login.initLanguageDropdownClick();
 		app.login.Login.initForgotPasswordClick();
+		app.login.Login.initSendEmailClick();
 		app.helper.Tooltip.initTooltipEvents();
 	});
 })()
