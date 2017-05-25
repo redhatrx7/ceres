@@ -1,2 +1,5 @@
 #login #language-select {
   position: absolute; }
+
+#login #forgot-password-form {
+  display: none; }

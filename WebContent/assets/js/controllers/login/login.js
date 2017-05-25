@@ -40,6 +40,15 @@
 				return false;
 			});
 		}
+
+		static initForgotPasswordClick()
+		{
+			$('#forgot-password-link').on('click', function()
+			{
+				$('#forgot-password-form').slideToggle();
+				return false;
+			});
+		}
 	}
 
 	/**
@@ -48,6 +57,7 @@
 	$(document).ready(function()
 	{
 		app.login.Login.initLanguageDropdownClick();
+		app.login.Login.initForgotPasswordClick();
 		app.helper.Tooltip.initTooltipEvents();
 	});
 })()

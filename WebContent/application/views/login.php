@@ -74,10 +74,36 @@
 						</div>
 						<div class="form-group row">
 							<div class="col">
-								<?= anchor('forgot', lang('forgot_password'), array('class' => 'em09 text-primary')) ?>
+								<?= anchor('forgot', lang('forgot_password'), array('id' => 'forgot-password-link', 'class' => 'em09 text-primary')) ?>
 							</div>
 						</div>
 						<?= form_close() ?>
+						<div id="forgot-form">
+							<?= form_open('/login', array('id' => 'forgot-password-form', 'method' => 'post' )); ?>
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+									<?= form_input(array(
+											'type'			=> 'text',
+											'name'			=> 'email',
+											'id'			=> 'email',
+											'value'			=> set_value('email', $data['email']),
+											'class'			=> 'form-control',
+											'placeholder'	=> lang('email'),
+											'title'			=> form_error('email'),
+											'data-toggle'	=> 'tooltip',
+											'data-required' => true,
+											'data-placement'=> 'top'
+									))?>
+								</div>
+								<div class="form-group row">
+									<div class="col">
+										<?=form_submit('send_email', lang('send_email'), array(
+											'class'	=> 'btn btn-secondary pull-right'
+										))?>
+									</div>
+								</div>
+							<?= form_close() ?>
+						</div>
 					</div>
 				</div>
 			</div>

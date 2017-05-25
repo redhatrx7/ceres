@@ -131,7 +131,9 @@
 						</div>
 						<div class="form-group row">
 							<div class="col">
-								<?= anchor('login', lang('back'), array('class' => 'em09 text-primary')) ?>
+								
+								<?= anchor('login', '<i class="fa fa-chevron-left" aria-hidden="true"></i> '.lang('back'),
+									array('class' => 'em09 text-primary')) ?>
 							</div>
 						</div>
 						<?= form_close() ?>
@@ -140,11 +142,13 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- Error and success dialogs -->
 	<div id="error-dialog" class="modal fade" role="dialog">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Oops, Something went wrong!</h5>
+					<h5 class="modal-title"><?=lang('went_wrong') ?></h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -157,7 +161,7 @@
 					</p>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('close') ?></button>
 				</div>
 			</div>
 		</div>
@@ -166,7 +170,7 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Success!</h5>
+					<h5 class="modal-title"><?=lang('success') ?></h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -179,7 +183,7 @@
 					</p>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="redirect btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="redirect btn btn-secondary" data-dismiss="modal"><?=lang('close') ?></button>
 				</div>
 			</div>
 		</div>

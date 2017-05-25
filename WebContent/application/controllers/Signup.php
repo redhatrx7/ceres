@@ -74,12 +74,12 @@ class Signup extends MY_Controller
 						)
 					)
 					{
-						$data['success_message'] = 'Your account has been successfully created! Close dialog to login.';
+						$data['success_message'] = lang('account_created');
 					}
 					else
 					{
 						$error = TRUE;
-						$data['error_message'] = 'Unable to create account';
+						$data['error_message'] = lang('account_created_error');
 					}
 				}
 				else

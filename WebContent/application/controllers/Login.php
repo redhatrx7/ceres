@@ -39,7 +39,7 @@ class Login extends MY_Controller
 		$session = $this->session->userdata();
 
 		// Basic array to fill in form data for login (current username, password, and whether to fill in the password)
-		$data = array('username' => '', 'password' => '', 'show_password' => FALSE);
+		$data = array('username' => '', 'password' => '', 'show_password' => FALSE, 'email' => '');
 		
 
 		// If the login button has been pressed
