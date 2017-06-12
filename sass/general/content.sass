@@ -19,17 +19,44 @@ html
 		.em09
 			font-size: 0.9em;
 
+		.input-group
+			margin-bottom: 1em
+			&.text
+				margin-top: 1.8em
+
 		.card
 			border-color: #337ab7
 			.card-header
 				background-color: #337ab7
 				border-color: #337ab7
-				color: white;
+				color: white
 			.card-block
 				.error
-					color: red;
+					color: red
 				.input-group
-					margin-bottom: 1em
 					.input-group-addon
 						background-color: #337ab7
-						color: white;
+						color: white
+
+		.field-container 
+			position: relative
+			margin-top: 20px
+			font-family: sans-serif
+
+		.floating-label
+			position: absolute
+			pointer-events: none
+			top: 5px
+			left: 3em
+			font-size: 1em;
+			opacity: 0
+			padding: 0 2px
+			-webkit-transition: 0.3s ease-in-out
+			transition: 0.3s ease-in-out
+			color: #DDD
+
+		.field:not(:placeholder-shown) + .floating-label 
+			opacity: 1
+			top: -1.4em
+			color: #3d3ad4
+			left: 0.3em

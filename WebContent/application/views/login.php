@@ -20,35 +20,37 @@
 					</div>
 					<div style="padding-top:30px" class="card-block">
 						<?= form_open('/login', array('id' => 'login', 'method' => 'post' )); ?>
-						<div class="input-group">
+						<div class="input-group field-container">
 							<span class="input-group-addon"><i class="fa fa-user"></i></span>
 							<?= form_input(array(
 									'type'			=> 'text',
 									'name'			=> 'username',
 									'id'			=> 'username',
 									'value'			=> set_value('username', $data['username']),
-									'class'			=> 'form-control',
+									'class'			=> 'form-control field',
 									'placeholder'	=> lang('email_or_username'),
 									'title'			=> form_error('username'),
 									'data-toggle'	=> 'tooltip',
 									'data-required' => true,
 									'data-placement'=> 'top'
 							))?>
+							<?=form_label(lang('email_or_username'), 'username', array('class' => 'floating-label')) ?>
 						</div>
-						<div class="input-group">
+						<div class="input-group text field-container">
 							<span class="input-group-addon"><i class="fa fa-lock"></i></span>
 							<?= form_input(array(
 									'type'			=> 'password',
 									'name'			=> 'password',
 									'id'			=> 'password',
 									'value'			=> ($data['show_password']) ? set_value('password', $data['password']) : '',
-									'class'			=> 'form-control',
+									'class'			=> 'form-control field',
 									'placeholder'	=> lang('password'),
 									'title'			=> form_error('password'),
 									'data-toggle'	=> 'tooltip',
 									'data-required' => true,
 									'data-placement'=> 'bottom'
 							))?>
+							<?=form_label(lang('password'), 'password', array('class' => 'floating-label')) ?>
 						</div>
 						<div class="input-group">
 							<div class="checkbox">
@@ -80,20 +82,21 @@
 						<?= form_close() ?>
 						<div id="forgot-form">
 							<?= form_open('/login', array('id' => 'forgot-password-form', 'method' => 'post' )); ?>
-								<div class="input-group">
+								<div class="input-group text field-container">
 									<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
 									<?= form_input(array(
 											'type'			=> 'text',
 											'name'			=> 'email',
 											'id'			=> 'email',
 											'value'			=> set_value('email', $data['email']),
-											'class'			=> 'form-control',
+											'class'			=> 'form-control field',
 											'placeholder'	=> lang('email'),
 											'title'			=> form_error('email'),
 											'data-toggle'	=> 'tooltip',
 											'data-required' => true,
 											'data-placement'=> 'top'
 									))?>
+									<?=form_label(lang('email'), 'email', array('class' => 'floating-label')) ?>
 								</div>
 								<div class="form-group row">
 									<div class="col">
@@ -102,16 +105,6 @@
 										))?>
 									</div>
 								</div>
-								<div class="field-container">  
-  <input type="text" class="field" required placeholder="First name"/>
-  <label class="floating-label">First name</label> 
-  <div class="field-underline"></div>
-</div>
-<div class="field-container">  
-  <input type="text" class="field" required placeholder="Last name"/>
-  <label class="floating-label">Last name</label> 
-  <div class="field-underline"></div>
-</div>
 							<?= form_close() ?>
 						</div>
 					</div>

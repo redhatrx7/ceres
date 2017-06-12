@@ -11,12 +11,12 @@
 					</div>
 					<div style="padding-top:30px" class="card-block">
 						<?= form_open('/signup', array('id' => 'signup-form', 'method' => 'post' )); ?>
-						<div class="input-group">
+						<div class="input-group field-container">
 							<?= form_input(array(
 									'type'			=> 'text',
 									'name'			=> 'first_name',
 									'id'			=> 'first-name',
-									'class'			=> 'form-control',
+									'class'			=> 'form-control field',
 									'placeholder'	=> lang('first_name'),
 									'title'			=> form_error('first_name'),
 									'value'			=> set_value('first_name', $data['first_name']),
@@ -24,13 +24,14 @@
 									'data-required' => true,
 									'data-placement'=> 'top'
 							))?>
+							<?=form_label(lang('first_name'), 'first_name', array('class' => 'floating-label')) ?>
 						</div>
-						<div class="input-group">
+						<div class="input-group text field-container">
 							<?= form_input(array(
 									'type'			=> 'text',
 									'name'			=> 'last_name',
 									'id'			=> 'last-name',
-									'class'			=> 'form-control',
+									'class'			=> 'form-control field',
 									'placeholder'	=> lang('last_name'),
 									'title'			=> form_error('last_name'),
 									'value'			=> set_value('last_name', $data['last_name']),
@@ -38,13 +39,14 @@
 									'data-required' => true,
 									'data-placement'=> 'top'
 							))?>
+							<?=form_label(lang('last_name'), 'last_name', array('class' => 'floating-label')) ?>
 						</div>
-						<div class="input-group">
+						<div class="input-group text field-container">
 							<?= form_input(array(
 									'type'			=> 'text',
 									'name'			=> 'username',
 									'id'			=> 'username',
-									'class'			=> 'form-control',
+									'class'			=> 'form-control field',
 									'placeholder'	=> lang('username'),
 									'title'			=> form_error('username'),
 									'value'			=> set_value('username', $data['username']),
@@ -52,13 +54,14 @@
 									'data-required' => true,
 									'data-placement'=> 'top'
 							))?>
+							<?=form_label(lang('username'), 'username', array('class' => 'floating-label')) ?>
 						</div>
-						<div class="input-group">
+						<div class="input-group text field-container">
 							<?= form_input(array(
 									'type'			=> 'email',
 									'name'			=> 'email',
 									'id'			=> 'email',
-									'class'			=> 'form-control',
+									'class'			=> 'form-control field',
 									'placeholder'	=> lang('email'),
 									'title'			=> form_error('email'),
 									'value'			=> set_value('email', $data['email']),
@@ -66,26 +69,28 @@
 									'data-required' => true,
 									'data-placement'=> 'bottom'
 							))?>
+							<?=form_label(lang('email'), 'email', array('class' => 'floating-label')) ?>
 						</div>
-						<div class="input-group email-confirm">
+						<div class="input-group text email-confirm field-container">
 							<?= form_input(array(
 									'type'			=> 'email',
 									'name'			=> 'email_confirm',
 									'id'			=> 'email-confirm',
-									'class'			=> 'form-control',
+									'class'			=> 'form-control field',
 									'placeholder'	=> lang('email_confirm'),
 									'title'			=> form_error('email_confirm'),
 									'data-toggle'	=> 'tooltip',
 									'data-required' => true,
 									'data-placement'=> 'bottom'
 							))?>
+							<?=form_label(lang('email_confirm'), 'email_confirm', array('class' => 'floating-label')) ?>
 						</div>
-						<div class="input-group">
+						<div class="input-group text field-container">
 							<?= form_input(array(
 									'type'			=> 'password',
 									'name'			=> 'password',
 									'id'			=> 'password',
-									'class'			=> 'form-control',
+									'class'			=> 'form-control field',
 									'placeholder'	=> lang('password'),
 									'title'			=> form_error('password'),
 									'value'			=> set_value('password', $data['password']),
@@ -93,19 +98,21 @@
 									'data-required' => true,
 									'data-placement'=> 'bottom'
 							))?>
+							<?=form_label(lang('password'), 'password', array('class' => 'floating-label')) ?>
 						</div>
-						<div class="input-group password-confirm">
+						<div class="input-group password-confirm text field-container">
 							<?= form_input(array(
 									'type'			=> 'password',
 									'name'			=> 'password_confirm',
 									'id'			=> 'password-confirm',
-									'class'			=> 'form-control',
+									'class'			=> 'form-control field',
 									'placeholder'	=> lang('password_confirm'),
 									'title'			=> form_error('password_confirm'),
 									'data-toggle'	=> 'tooltip',
 									'data-required' => true,
 									'data-placement'=> 'bottom'
 							))?>
+							<?=form_label(lang('password_confirm'), 'password_confirm', array('class' => 'floating-label')) ?>
 						</div>
 						<div class="date">
 							<label><?=lang('birthdate') ?></label>
