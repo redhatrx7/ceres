@@ -9,7 +9,7 @@ $config = array(
 				array('http-equiv' => 'Content-Type', 'content' + 'text/html', 'charset' => 'UTF-8')
 		),
 		'css' => array(
-			asset_url().'css/general/codeigniter.css'
+			asset_url().'css/controller/welcome.css'
 		),
 		'js' => array(
 				asset_url().'js/general/sp_core/namespace.js',

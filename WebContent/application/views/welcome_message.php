@@ -1,27 +1,43 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 <div id="container">
-	<h1>Welcome</h1>
-	<?= anchor('login', 'signout', array('class' => 'signout')) ?>
-
-	<div id="body">
-		<? if(isset($session['username'])): ?>
-			<p><?=$session['username'] ?> is logged in</p>
-		<? endif; ?>
-		<p>The page you are looking at is being generated.</p>
-
-		<p>If you would like to edit this page you'll find it located at:</p>
-		<code>application/views/welcome_message.php</code>
-
-		<p>The corresponding controller for this page is found at:</p>
-		<code>application/controllers/Welcome.php</code>
-
-		<p>User Guide: <a href="user_guide/">User Guide</a>.</p>
+	<div id="title" class="caption">
+		<h1>Testing Words</h1>
 	</div>
 
-	<div id="react"></div>
+	<div id="slide1" class="slide">
+		<div class="title">
+			<h1>Slide 1</h1>
+		</div>
+	</div>
 
-	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
+	<div id="slide2" class="caption">
+		<h1>Slide 2</h1>
+	</div>
+
+	<div id="slide3" class="slide">
+		<div class="title">
+			<h1>Slide 3</h1>
+		</div>
+	</div>
+
+	<div id="slide4" class="caption">
+		<h1>And More</h1>
+	</div>
+
+	<div id="slide5" class="slide">
+		<div class="title">
+			<h1>Slide 5</h1>
+		</div>
+	</div>
+	
+	<div id="slide6" class="caption">
+		<h1>And More2</h1>
+	</div>
+
+	<div id="slide7" class="slide">
+		<div class="title">
+			<h1>Slide 7</h1>
+		</div>
+	</div>
 </div>
