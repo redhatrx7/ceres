@@ -18,11 +18,16 @@
 
 		/**
 		 * @description should keep caption headers scrolling with content until a new header has been hit
+		 * should work both ways
+		 * 
 		 * @returns void
 		 */
-		static scrollCaptions()
+		static scrollCaptions( points )
 		{
-			
+			$('#welcome-page').on('scroll', function()
+			{
+				console.log($(this).scrollTop());
+			});
 		}
 	}
 
@@ -31,6 +36,12 @@
 	 */
 	$(document).ready(function()
 	{
-		app.welcome.Welcome.scrollCaptions();
+		let points = {};
+		$('.heading:not(#heading-float)').each((index, el) =>
+		{
+			let points = {};
+			console.log($(el).position().top);
+		});
+		app.welcome.Welcome.scrollCaptions( points );
 	});
 })()
