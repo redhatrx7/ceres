@@ -6,7 +6,8 @@ $config = array(
 		'meta' => array(
 			array('name' => 'description', 'content' => 'this is a welcome page'),
 			array('name' => 'author', 'content' => 'Daniel Demetroulis'),
-			array('http-equiv' => 'Content-Type', 'content' + 'text/html', 'charset' => 'UTF-8')
+			array('http-equiv' => 'Content-Type', 'content' + 'text/html', 'charset' => 'UTF-8'),
+			array('name' => 'viewport', 'content' => 'width=device-width, initial-scale=1, shrink-to-fit=no')
 		),
 		'css' => array(
 			asset_url().'css/controller/welcome.css'

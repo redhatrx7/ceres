@@ -1,14 +1,41 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito)
 
+::-webkit-scrollbar
+	width: 0px;  /* remove scrollbar space */
+	background: transparent;  /* optional: just make scrollbar invisible */
+
+/* optional: show position indicator in red */
+::-webkit-scrollbar-thumb
+	background: #FF0000;
+
+
 html
 	height: 100%
 	overflow: hidden
+
+	h1
+		font-size: 250%
+
+	.heading
+		text-align: center
+		color: #fff
+		text-shadow: 0 2px 2px #000
+		min-height: 7vh
+		width: 100%
+		overflow: hidden
+		background: #222
 
 	body
 		margin: 0
 		padding: 0
 		height: 100%
 		width: 100%;
+
+		.heading-float
+			position: absolute
+			top: 0
+			z-index: 2
+			display: none
 
 		#welcome-page
 			perspective: 1px
@@ -19,14 +46,14 @@ html
 			overflow-y: auto
 			overflow-x: hidden
 
+			.heading-float
+				position: fixed
+				top: 0
+				z-index: 2
+				display: none
+
 			#container
-				overflow: hidden;
-
-				#heading-float
-					display: none;
-
-				h1
-					 font-size: 250%
+				overflow: hidden
 
 				.slide
 					position: relative
@@ -67,25 +94,11 @@ html
 					margin-left: auto
 					margin-right: 0
 
-				.heading
-					text-align: center
-					color: #fff
-					text-shadow: 0 2px 2px #000
-					min-height: 7vh
-					width: 100%
-					overflow: hidden
-
-				#title
-					background: #222
-
 				#slide1:before
 					background-image: url("http://s1.picswalls.com/wallpapers/2015/09/20/background-2015_111525910_269.jpg")
 					transform: translateZ(-0.4px) scale(1.4)
 					overflow: hidden
 					z-index: -1
-
-				#slide2
-					background: #222
 
 				#slide3:before
 					background-image: url("http://cdn.wonderfulengineering.com/wp-content/uploads/2016/01/cool-wallpaper-1.jpg")
@@ -93,17 +106,11 @@ html
 					overflow: hidden
 					z-index: -1
 
-				#slide4
-					background: #222
-
 				#slide5:before
 					background-image: url("http://wallpapercave.com/wp/Ti6qoP7.jpg")
 					transform: translateZ(-0.4px) scale(1.4)
 					overflow: hidden
 					z-index: -1
-					
-				#slide6
-					background: #222
 
 				#slide7:before
 					background-image: url("https://kbdevstorage1.blob.core.windows.net/asset-blobs/19443_en_1")
