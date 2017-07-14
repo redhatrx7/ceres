@@ -64,13 +64,14 @@
 				let trigger = staticHeight + scrollTop;
 				let staticPosition = null;
 				let scrollDirection = ( scrollTop > prevScrollPosition ? 'down' : 'up' );
-				
+
 				if ( scrollTop === 0 )
 				{
 					that.currentCaption = null;
 				}
 
-				if ( scrollDirection === 'down' && that.currentCaption && modify && trigger >= that.currentCaption.top + that.currentCaption.element.height() )
+				if ( scrollDirection === 'down' && that.currentCaption && modify && trigger >= that.currentCaption.top +
+					that.currentCaption.element.height() )
 				{
 					$('body >.heading-float').show();
 					$('#welcome-page >.heading-float').hide();
