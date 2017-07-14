@@ -16,6 +16,10 @@
 			this.currentCaption = null;
 		}
 
+		/**
+		 * @description resets the scroll on window resize to restart calculations based on new positions
+		 * @returns void
+		 */
 		initWindowResize()
 		{
 			$(window).on('resize', () =>
@@ -26,6 +30,10 @@
 			});
 		}
 
+		/**
+		 * @description returns the points for each header and its associated element
+		 * @returns void
+		 */
 		getPoints()
 		{
 			let points = {};
@@ -37,6 +45,7 @@
 				$('body >.heading-float').hide();
 				$('#welcome-page >.heading-float').hide();
 			});
+
 			return points;
 		}
 
@@ -157,8 +166,6 @@
 	 */
 	$(document).ready(function()
 	{
-		
-
 		let welcome = new app.welcome.Welcome();
 		welcome.initWindowResize();
 		welcome.scrollCaptions( welcome.getPoints() );
