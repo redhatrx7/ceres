@@ -32,7 +32,7 @@
 
 		/**
 		 * @description returns the points for each header and its associated element
-		 * @returns void
+		 * @returns {Object} points
 		 */
 		getPoints()
 		{
@@ -74,6 +74,7 @@
 				let staticPosition = null;
 				let scrollDirection = ( scrollTop > prevScrollPosition ? 'down' : 'up' );
 
+				// If it hits to the reset the currentCaption
 				if ( scrollTop === 0 )
 				{
 					that.currentCaption = null;
