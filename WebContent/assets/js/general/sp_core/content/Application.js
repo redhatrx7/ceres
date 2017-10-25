@@ -56,6 +56,8 @@ sp_core.Application = class
 		// Set controller/parameters based off segments
 		if ( uri.length > 0 )
 		{
+			uri.shift();
+
 			if ( uri[0] )
 			{
 				response.controller = uri.shift();

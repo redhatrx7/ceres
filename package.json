@@ -28,6 +28,7 @@
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
     "jquery-ui-dist": "^1.12.1",
+    "popper.js": "^1.12.6",
     "react": "^15.6.2",
     "react-dom": "^15.6.2",
     "tether": "^1.4.0"
