@@ -53,17 +53,27 @@ sp_core.Router = class
 	route(route, newURI = false)
 	{
 		// If there is no route passed, go to default controller
-		if ( ! this._routes[route.controller])
+		if ( !Boolean(route.controller) )
 		{
 			this._currentController = this._defaultRoute;
 			this.pushURI(this._currentController);
+		}
+		if ( ! this._routes[route.controller])
+		{
+			this._currentController = this._defaultRoute;
+			let segments = window.location.pathname.replace(/^\/?/,'').split('/');
+			if (Boolean(segments[1]))
+			{
+				segments[1] = this._currentController;
+			}
+			this.pushURI(`${location.origin}/${segments.join('/')}`, true);
 		}
 		else
 		{
 			this._currentController = route.controller;
 			if (newURI)
 			{
-				pushURI(this._currentController +
+				this.pushURI(this._currentController +
 						(route.parameters.length > 0 ? '/' + route.parameters.join('/') : ''));
 			}
 		}
@@ -75,8 +85,8 @@ sp_core.Router = class
 	 * @description uses pushState to change URI
 	 * @returns void
 	 */
-	pushURI(uri)
+	pushURI(uri, fullUrl = false)
 	{
-		history.pushState({},null,`${window.location.pathname}/` + uri);
+		history.pushState({},null, (fullUrl ? uri : `${window.location.pathname}/` + uri));
 	}
 }
