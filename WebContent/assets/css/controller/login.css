@@ -3,3 +3,6 @@
 
 #login #forgot-password-form {
   display: none; }
+
+#login .card-block {
+  padding: 1em; }

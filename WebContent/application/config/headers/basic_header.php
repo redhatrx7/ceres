@@ -15,6 +15,7 @@ $config = array(
 			'js' => array(
 				asset_url().'js/third_party/jquery.min.js',
 				asset_url().'js/third_party/jquery-ui.min.js',
+				asset_url().'js/third_party/popper.min.js',
 				asset_url().'js/third_party/bootstrap.min.js'
 			)
 		)

@@ -3,7 +3,7 @@
 <div id="login" class="fill">
 	<div class="container-fluid stretch-height">
 		<div id="language-select" class="dropdown">
-			<button class="btn btn-secondary dropdown-toggle" type="button" id="language-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<button class="btn btn-outline-primary dropdown-toggle" type="button" id="language-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<?=lang($language) ?>
 			</button>
 			<div class="dropdown-menu" aria-labelledby="language-dropdown">
